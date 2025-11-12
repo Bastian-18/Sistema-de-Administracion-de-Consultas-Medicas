@@ -1,52 +1,51 @@
 package clinica;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SistemaClinico {
     
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int opcion;
-        
-        do {
-            System.out.println("=== Menú Principal ===");
-            System.out.println("1. Registrar cliente");
-            System.out.println("2. Registrar doctor");
-            System.out.println("3. Crear consulta");
-            System.out.println("4. Asignar tratamiento");
-            System.out.println("5. Salir");
-            System.out.print("Seleccione una opción: ");
-            
-            opcion = scanner.nextInt();
-            
-            switch (opcion) {
-                case 1:
-                    System.out.println("Función no implementada");
-                    break;
-                case 2:
-                    System.out.println("Función no implementada");
-                    break;
-                case 3:
-                    System.out.println("Función no implementada");
-                    break;
-                case 4:
-                    System.out.println("Función no implementada");
-                    break;
-                case 5:
-                    System.out.println("Saliendo...");
-                    break;
-                default:
-                    System.out.println("Opción no válida");
-            }
-            System.out.println();
-        } while (opcion != 5);
-        
-        scanner.close();
+    List<Cliente> clientes;
+    List<Doctor> doctores;
+    List<Consulta> consultas;
+
+    public List<Cliente> getClientes() {
+        return clientes;
     }
-    
-    // Constructor básico
-    public SistemaClinico() {
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
     }
-    
+
+    public List<Doctor> getDoctores() {
+        return doctores;
+    }
+
+    public void setDoctores(List<Doctor> doctores) {
+        this.doctores = doctores;
+    }
+
+    public List<Consulta> getConsultas() {
+        return consultas;
+    }
+
+    public void setConsultas(List<Consulta> consultas) {
+        this.consultas = consultas;
+    }
+
+    @Override
+    public String toString() {
+        return "SistemaClinico{" +
+                "clientes=" + clientes +
+                ", doctores=" + doctores +
+                ", consultas=" + consultas +
+                '}';
+    }
+
+    public SistemaClinico(List<Cliente> clientes, List<Doctor> doctores, List<Consulta> consultas) {
+        this.clientes = clientes;
+        this.doctores = doctores;
+        this.consultas = consultas;
+    }
 }
 
