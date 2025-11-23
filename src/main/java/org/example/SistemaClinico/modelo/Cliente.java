@@ -2,49 +2,52 @@ package org.example.SistemaClinico.modelo;
 
 import lombok.Getter;
 import lombok.Setter;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.ReadOnly;
+import org.openxava.annotations.Required;
+import org.openxava.annotations.View;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Cliente")
 @Getter
 @Setter
-@Entity
-public class Cliente {
+@View(members =
+    "nombre_cliente;" +
+    "ruc;" +
+    "email;" +
+    "telefono;" +
+    "direccion;" +
+    "estado;"
+)
+public class Cliente extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ReadOnly
+    @Required
+    @Column(name = "nombre_cliente", nullable = false)
+    private String nombre_cliente;
 
-    private int idCliente;
+    @Required
+    @Column(name = "ruc", nullable = false)
+    private String ruc;
 
-    private String nombre;
-    private String apellido;
-    private String dni;
-    private String telefono;
+    @Required
+    @Column(name = "email", nullable = false)
     private String email;
 
-    public Cliente() {}
+    @Required
+    @Column(name = "telefono", nullable = false)
+    private String telefono;
 
-    public Cliente(String nombre, String apellido, String dni, String telefono, String email) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.telefono = telefono;
-        this.email = email;
-    }
+    @Required
+    @Column(name = "direccion", nullable = false)
+    private String direccion;
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "idCliente=" + idCliente +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", dni='" + dni + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
+    @Required
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado", nullable = false, length = 20)
+    private Estado estado;
+
 }
