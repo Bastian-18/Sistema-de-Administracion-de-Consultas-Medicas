@@ -3,7 +3,6 @@
 <Context>
 
 	<JarScanner scanClassPath="false" />
-	<CookieProcessor sameSiteCookies="lax" /> <!-- Para cumplir con OWASP -->
 	
 	<!-- 
 	Para definir el acceso a tu base de datos descomenta una de las
@@ -17,75 +16,74 @@
 	correspodiente a tu base de datos al pom.xml de tu proyecto.	
 	-->
 	 
-	<!-- HSQLDB -->   	
+	<!-- HSQLDB
     <Resource name="jdbc/SistemaClinicoDS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
 	      username="sa" password="" 
 	      driverClassName="org.hsqldb.jdbc.JDBCDriver"
 	      url="jdbc:hsqldb:hsql://localhost:1666"/>
-	      
-	<!-- MySQL       
-    <Resource name="jdbc/Uam_FiaDS" auth="Container" type="javax.sql.DataSource"
-	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
-	      username="root" password="" 
-	      driverClassName="com.mysql.cj.jdbc.Driver"
-	      url="jdbc:mysql://localhost:3306/Uam_Fiadb"/>	      
-	-->      
+    -->
+    <!-- MySQL
+    <Resource name="jdbc/SistemaClinicoDS" auth="Container" type="javax.sql.DataSource"
+          maxTotal="20" maxIdle="5" maxWaitMillis="10000"
+          username="root" password=""
+          driverClassName="com.mysql.cj.jdbc.Driver"
+          url="jdbc:mysql://localhost:3306/SistemaClinicodb"/>
+    -->
 	
-	<!-- PostgreSQL 
-	<Resource name="jdbc/Uam_FiaDS" auth="Container" type="javax.sql.DataSource"
+
+	<Resource name="jdbc/SistemaClinicoDS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
-	      username="postgres" password="" 
+	      username="postgres" password="1234"
 	      driverClassName="org.postgresql.Driver" 
-	      url="jdbc:postgresql://localhost/Uam_Fiadb"/>
-	-->
+	      url="jdbc:postgresql://localhost/SistemaClinico_db"/>
 	
 	<!-- Oracle 
-	<Resource name="jdbc/Uam_FiaDS" auth="Container" type="javax.sql.DataSource"
+	<Resource name="jdbc/SistemaClinicoDS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
 	      username="user" password="" 
 	      driverClassName="oracle.jdbc.OracleDriver"
-	      url="jdbc:oracle:thin:@localhost:1521:Uam_Fiadb"/>
+	      url="jdbc:oracle:thin:@localhost:1521:SistemaClinicodb"/>
 	-->	
 	
 	<!-- AS/400 
-	<Resource name="jdbc/Uam_FiaDS" auth="Container" type="javax.sql.DataSource"
+	<Resource name="jdbc/SistemaClinicoDS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
 	      username="user" password="" 
 	      driverClassName="com.ibm.as400.access.AS400JDBCDriver" 
-	      url="jdbc:as400:localhost/Uam_Fialib"/>
+	      url="jdbc:as400:localhost/SistemaClinicolib"/>
 	-->
 	
 	<!-- Microsoft SQL Server
-	<Resource name="jdbc/Uam_FiaDS" auth="Container" type="javax.sql.DataSource"
+	<Resource name="jdbc/SistemaClinicoDS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
 	      username="user" password="" 
 	      driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
-	      url="jdbc:sqlserver://localhost:1433;databaseName=Uam_Fiadb"/>
+	      url="jdbc:sqlserver://localhost:1433;databaseName=SistemaClinicodb"/>
 	-->
 	
 	<!-- Informix
-	<Resource name="jdbc/Uam_FiaDS" auth="Container" type="javax.sql.DataSource"
+	<Resource name="jdbc/SistemaClinicoDS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
 	      username="user" password="" 
 	      driverClassName="com.informix.jdbc.IfxDriver"
-	      url="jdbc:informix-sqli://localhost:1533/Uam_Fiadb:INFORMIXSERVER=tuservidor"/>
+	      url="jdbc:informix-sqli://localhost:1533/SistemaClinicodb:INFORMIXSERVER=tuservidor"/>
 	-->            
 	
 	<!-- Db2
-	<Resource name="jdbc/Uam_FiaDS" auth="Container" type="javax.sql.DataSource"
+	<Resource name="jdbc/SistemaClinicoDS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
 	      username="user" password="" 
 	      driverClassName="com.ibm.db2.jcc.DB2Driver"
-	      url="jdbc:db2://localhost:50000/Uam_Fiadb"/>
+	      url="jdbc:db2://localhost:50000/SistemaClinicodb"/>
 	-->
 	
 	<!-- Firebird
-	<Resource name="jdbc/Uam_FiaDS" auth="Container" type="javax.sql.DataSource"
+	<Resource name="jdbc/SistemaClinicoDS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
 	      username="user" password="" 
 	      driverClassName="org.firebirdsql.jdbc.FBDriver"
-	      url="jdbc:firebirdsql://localhost:3050/c:/db/Uam_Fia.fdb"/>
+	      url="jdbc:firebirdsql://localhost:3050/c:/db/SistemaClinico.fdb"/>
 	-->
 	                  	      
 </Context>

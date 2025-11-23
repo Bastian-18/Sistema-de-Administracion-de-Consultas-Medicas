@@ -8,7 +8,7 @@
     <var-entorno nombre="SistemaClinico_ANYO_DEFECTO" valor="2015"/>
     -->
     
-    <!-- Objeto de sesiï¿½n:
+    <!-- Objeto de sesión:
     <Objeto nombre="SistemaClinico_anyoActivo" clase="java.lang.Integer" valor="2015" 
             ambito="global"/>
     -->
