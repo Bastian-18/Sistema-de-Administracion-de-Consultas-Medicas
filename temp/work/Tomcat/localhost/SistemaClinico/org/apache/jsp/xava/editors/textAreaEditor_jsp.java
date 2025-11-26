@@ -6,13 +6,15 @@
  *       the last modified time of the source file after
  *       generation to assist with modification tracking.
  */
-package org.apache.jsp.xava;
+package org.apache.jsp.xava.editors;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import org.openxava.model.meta.MetaProperty;
+import org.openxava.util.Is;
 
-public final class frameActions_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class textAreaEditor_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent,
                  org.apache.jasper.runtime.JspSourceImports {
 
@@ -30,7 +32,9 @@ public final class frameActions_jsp extends org.apache.jasper.runtime.HttpJspBas
     _jspx_imports_packages.add("javax.servlet");
     _jspx_imports_packages.add("javax.servlet.http");
     _jspx_imports_packages.add("javax.servlet.jsp");
-    _jspx_imports_classes = null;
+    _jspx_imports_classes = new java.util.HashSet<>();
+    _jspx_imports_classes.add("org.openxava.model.meta.MetaProperty");
+    _jspx_imports_classes.add("org.openxava.util.Is");
   }
 
   private volatile javax.el.ExpressionFactory _el_expressionfactory;
@@ -113,6 +117,9 @@ public final class frameActions_jsp extends org.apache.jasper.runtime.HttpJspBas
       out = pageContext.getOut();
       _jspx_out = out;
 
+      out.write('\n');
+      out.write('\n');
+      out.write('\n');
       org.openxava.web.style.Style style = null;
       style = (org.openxava.web.style.Style) _jspx_page_context.getAttribute("style", javax.servlet.jsp.PageContext.REQUEST_SCOPE);
       if (style == null){
@@ -122,69 +129,56 @@ public final class frameActions_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write('\n');
       out.write('\n');
 
-String frameId=request.getParameter("frameId");
-boolean closed="true".equals(request.getParameter("closed"));
-String frameContentId=frameId + "content";
-String frameShowId=frameId + "show";
-String frameHideId=frameId + "hide";
-String hideClass=closed?"class='ox-display-none'":"";
-String showClass=closed?"":"class='ox-display-none'";
+String propertyKey = request.getParameter("propertyKey");
+MetaProperty p = (MetaProperty) request.getAttribute(propertyKey);
+String fvalue = (String) request.getAttribute(propertyKey + ".fvalue");
+if ("0".equals(fvalue)) fvalue = "";
+String align = p.isNumber()?"right":"left";
+boolean editable="true".equals(request.getParameter("editable"));
+String disabled=editable?"":"disabled";
+String script = request.getParameter("script");
+int rows = p.getSize() / 80 + 1;
+if (rows > 25) rows = 25; 
+script = script + " onkeyup='return openxava.limitLength(event, " + p.getSize() + ")' ";
+boolean rich = Is.equalAsStringIgnoreCase("true", request.getParameter("rich"));
+String cssClass = request.getParameter("cssClass");
+if (cssClass == null) cssClass = style.getEditor();
 
-String minimizeImage = null;
-if (style.getMinimizeImage() != null) minimizeImage=!style.getMinimizeImage().startsWith("/")?request.getContextPath() + "/" + style.getMinimizeImage():style.getMinimizeImage();
-String restoreImage = null;
-if (style.getRestoreImage() != null) restoreImage=!style.getRestoreImage().startsWith("/")?request.getContextPath() + "/" + style.getRestoreImage():style.getRestoreImage();
-
-      out.write(" 		\n");
       out.write("\n");
-      out.write("<span id=\"");
-      out.print(frameHideId);
+      out.write("\n");
+      out.write("<textarea id=\"");
+      out.print(propertyKey);
+      out.write("\" name=\"");
+      out.print(propertyKey);
+      out.write("\" class=\"");
+      out.print(cssClass);
+      out.write("\"\n");
+      out.write("	tabindex=\"1\" \n");
+      out.write("	rows=\"");
+      out.print(rows);
+      out.write("\" cols=\"80\"\n");
+      out.write("	title=\"");
+      out.print(p.getDescription(request));
+      out.write("\"	\n");
+      out.write("	");
+      out.print(disabled);
+      out.write('\n');
+      out.write('	');
+      out.print(script);
+      out.write('>');
+      out.print(fvalue);
+      out.write("</textarea>	\n");
+ if (!editable) { 
+      out.write("\n");
+      out.write("	<input type=\"hidden\" name=\"");
+      out.print(propertyKey);
+      out.write("\" value=\"");
+      out.print(fvalue);
       out.write('"');
-      out.write(' ');
-      out.print(hideClass);
-      out.write(">\n");
-      out.write("	<a href=\"javascript:openxava.hideFrame('");
-      out.print(frameId);
-      out.write("')\">\n");
-      out.write("		");
- if (minimizeImage == null) { 
-      out.write("\n");
-      out.write("		<i class=\"mdi mdi-menu-down\"></i>\n");
-      out.write("		");
- } else { 
-      out.write("\n");
-      out.write("		<img src=\"");
-      out.print(minimizeImage);
-      out.write("\" border=0 align=\"absmiddle\"/>\n");
-      out.write("		");
+      out.write('>');
+      out.write('\n');
  } 
-      out.write("\n");
-      out.write("	</a>\n");
-      out.write("</span> \n");
-      out.write("<span id=\"");
-      out.print(frameShowId);
-      out.write('"');
-      out.write(' ');
-      out.print(showClass);
-      out.write(">\n");
-      out.write("	<a href=\"javascript:openxava.showFrame('");
-      out.print(frameId);
-      out.write("')\">\n");
-      out.write("		");
- if (restoreImage == null) { 
-      out.write("\n");
-      out.write("		<i class=\"mdi mdi-menu-right\"></i>\n");
-      out.write("		");
- } else { 
-      out.write("\n");
-      out.write("		<img src=\"");
-      out.print(restoreImage);
-      out.write("\" border=0 align=\"absmiddle\"/>\n");
-      out.write("		");
- } 
-      out.write("\n");
-      out.write("	</a>\n");
-      out.write("</span>\n");
+      out.write("			\n");
     } catch (java.lang.Throwable t) {
       if (!(t instanceof javax.servlet.jsp.SkipPageException)){
         out = _jspx_out;

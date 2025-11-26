@@ -8,7 +8,7 @@
     <var-entorno nombre="SistemaClinico_ANYO_DEFECTO" valor="2015"/>
     -->
     
-    <!-- Objeto de sesión:
+    <!-- Objeto de sesiï¿½n:
     <Objeto nombre="SistemaClinico_anyoActivo" clase="java.lang.Integer" valor="2015" 
             ambito="global"/>
     -->
@@ -20,5 +20,30 @@
                 clase="acciones.CrearProfesor"/>        
     </controlador>
     -->
+    
+    <!-- Controladores para Reportes -->
+    <controlador nombre="Cliente">
+        <hereda-de controlador="Typical"/>
+        <accion nombre="imprimirClientes" icono="printer" modo="list" 
+                clase="org.example.SistemaClinico.reportes.acciones.ImprimirClientesAction"/>
+    </controlador>
+    
+    <controlador nombre="Consulta">
+        <hereda-de controlador="Typical"/>
+        <accion nombre="imprimirConsultas" icono="printer" modo="list" 
+                clase="org.example.SistemaClinico.reportes.acciones.ImprimirConsultasAction"/>
+    </controlador>
+    
+    <controlador nombre="Cita">
+        <hereda-de controlador="Typical"/>
+        <accion nombre="imprimirCitas" icono="printer" modo="list" 
+                clase="org.example.SistemaClinico.reportes.acciones.ImprimirCitasAction"/>
+    </controlador>
+    
+    <controlador nombre="Pago">
+        <hereda-de controlador="Typical"/>
+        <accion nombre="imprimirPagos" icono="printer" modo="list" 
+                clase="org.example.SistemaClinico.reportes.acciones.ImprimirPagosAction"/>
+    </controlador>
     
 </controladores>

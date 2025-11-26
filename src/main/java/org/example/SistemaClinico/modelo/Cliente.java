@@ -2,28 +2,48 @@ package org.example.SistemaClinico.modelo;
 
 import lombok.Getter;
 import lombok.Setter;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import org.openxava.annotations.Hidden;
-import org.openxava.annotations.ReadOnly;
+import javax.persistence.*;
+import org.openxava.annotations.*;
 
 @Getter
 @Setter
 @Entity
+@Views({
+    @View(name="Simple", members="nombre, apellido, dni, telefono"),
+    @View(name="Completa", members="nombre, apellido, dni, telefono, email")
+})
+@Tab(properties="nombre, apellido, dni, telefono, email")
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idcliente")
     @ReadOnly
-
+    @Hidden
     private int idCliente;
 
+    @Required
+    @Column(length = 100)
+    @DisplaySize(30)
     private String nombre;
+    
+    @Required
+    @Column(length = 100)
+    @DisplaySize(30)
     private String apellido;
+    
+    @Required
+    @Column(length = 50, unique = true)
+    @DisplaySize(20)
     private String dni;
+    
+    @Column(length = 50)
+    @DisplaySize(15)
     private String telefono;
+    
+    @Column(length = 100)
+    @DisplaySize(40)
+    @Stereotype("EMAIL")
     private String email;
 
     public Cliente() {}
