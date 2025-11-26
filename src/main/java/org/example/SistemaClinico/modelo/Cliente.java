@@ -2,52 +2,69 @@ package org.example.SistemaClinico.modelo;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.openxava.annotations.Required;
-import org.openxava.annotations.View;
+import javax.persistence.*;
+import org.openxava.annotations.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "Cliente")
 @Getter
 @Setter
-@View(members =
-    "nombre_cliente;" +
-    "ruc;" +
-    "email;" +
-    "telefono;" +
-    "direccion;" +
-    "estado;"
-)
-public class Cliente extends BaseEntity{
+@Entity
+@Views({
+    @View(name="Simple", members="nombre, apellido, dni, telefono"),
+    @View(name="Completa", members="nombre, apellido, dni, telefono, email")
+})
+@Tab(properties="nombre, apellido, dni, telefono, email")
+public class Cliente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idcliente")
+    @ReadOnly
+    @Hidden
+    private int idCliente;
 
     @Required
-    @Column(name = "nombre_cliente", nullable = false)
-    private String nombre_cliente;
-
+    @Column(length = 100)
+    @DisplaySize(30)
+    private String nombre;
+    
     @Required
-    @Column(name = "ruc", nullable = false)
-    private String ruc;
-
+    @Column(length = 100)
+    @DisplaySize(30)
+    private String apellido;
+    
     @Required
-    @Column(name = "email", nullable = false)
+    @Column(length = 50, unique = true)
+    @DisplaySize(20)
+    private String dni;
+    
+    @Column(length = 50)
+    @DisplaySize(15)
+    private String telefono;
+    
+    @Column(length = 100)
+    @DisplaySize(40)
+    @Stereotype("EMAIL")
     private String email;
 
-    @Required
-    @Column(name = "telefono", nullable = false)
-    private String telefono;
+    public Cliente() {}
 
-    @Required
-    @Column(name = "direccion", nullable = false)
-    private String direccion;
+    public Cliente(String nombre, String apellido, String dni, String telefono, String email) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.telefono = telefono;
+        this.email = email;
+    }
 
-    @Required
-    @Enumerated(EnumType.STRING)
-    @Column(name = "estado", nullable = false, length = 20)
-    private Estado estado;
-
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "idCliente=" + idCliente +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", dni='" + dni + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

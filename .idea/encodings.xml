@@ -2,16 +2,6 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java" charset="ISO-8859-1" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/example/SistemaClinico/modelo/BaseEntity.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/example/SistemaClinico/modelo/Cliente.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/example/SistemaClinico/modelo/EntidadAuditable.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/example/SistemaClinico/modelo/Estado.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/example/SistemaClinico/modelo/Moneda.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/example/SistemaClinico/modelo/Pais.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/example/SistemaClinico/modelo/Rol.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/example/SistemaClinico/modelo/Sucursal.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/example/SistemaClinico/modelo/Usuario.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/example/SistemaClinico/modelo/UsuarioRol.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="ISO-8859-1" />
   </component>
 </project>

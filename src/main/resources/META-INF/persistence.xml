@@ -20,13 +20,6 @@
     	<class>com.openxava.naviox.model.SessionRecord</class>
     	<class>com.openxava.naviox.model.SSORecord</class>
     	<class>com.openxava.naviox.model.User</class>
-    	<class>org.example.SistemaClinico.modelo.Cliente</class>
-    	<class>org.example.SistemaClinico.modelo.Usuario</class>
-    	<class>org.example.SistemaClinico.modelo.Rol</class>
-    	<class>org.example.SistemaClinico.modelo.Sucursal</class>
-    	<class>org.example.SistemaClinico.modelo.Pais</class>
-    	<class>org.example.SistemaClinico.modelo.Moneda</class>
-    	<class>org.example.SistemaClinico.modelo.UsuarioRol</class>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="update"/>
         </properties>
