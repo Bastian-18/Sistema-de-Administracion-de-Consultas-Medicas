@@ -8,6 +8,8 @@ import org.openxava.util.*;
  * Con OpenXava Studio/Eclipse: Botón derecho del ratón > Run As > Java Application
  */
 
+
+
 public class SistemaClinico {
 
 	public static void main(String[] args) throws Exception {
