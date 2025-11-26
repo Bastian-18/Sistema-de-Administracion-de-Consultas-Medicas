@@ -23,6 +23,8 @@ public class Consulta {
     @Hidden
     private int idConsulta;
 
+
+
     @Required
     @Column(length = 20)
     @DisplaySize(15)
