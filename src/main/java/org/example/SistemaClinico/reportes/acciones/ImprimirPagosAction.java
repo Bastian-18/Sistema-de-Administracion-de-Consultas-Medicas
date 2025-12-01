@@ -1,7 +1,6 @@
 package org.example.SistemaClinico.reportes.acciones;
 
 import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JREmptyDataSource;
 import org.openxava.actions.JasperReportBaseAction;
 
 import java.util.Map;
@@ -10,7 +9,8 @@ public class ImprimirPagosAction extends JasperReportBaseAction {
 
     @Override
     protected JRDataSource getDataSource() throws Exception {
-        return new JREmptyDataSource();
+        // Retornar null para que JasperReports use la query SQL embebida en el reporte
+        return null;
     }
 
     @Override
