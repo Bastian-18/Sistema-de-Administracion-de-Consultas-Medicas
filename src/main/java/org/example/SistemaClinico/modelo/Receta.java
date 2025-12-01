@@ -5,6 +5,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import org.openxava.annotations.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -25,19 +26,18 @@ public class Receta {
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "consulta_id")
-    @DescriptionsList(
-        descriptionProperties = "fecha, hora, cliente.nombre, cliente.apellido",
-        order = "fecha DESC, hora DESC"
-    )
+    @ReferenceView("Busqueda")
     @Required
     @NoCreate
     @NoModify
     private Consulta consulta;
     
     @Required
-    @Column(length = 20)
-    @DisplaySize(15)
-    private String fechaEmision;
+    @Stereotype("DATE")
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fechaemision")
+    @DefaultValueCalculator(org.openxava.calculators.CurrentDateCalculator.class)
+    private Date fechaEmision;
     
     @Required
     @Column(length = 200)
@@ -64,7 +64,7 @@ public class Receta {
     
     @Override
     public String toString() {
-        return "Receta " + fechaEmision + " - " + 
+        return "Receta " + (fechaEmision != null ? fechaEmision.toString() : "") + " - " + 
                (consulta != null && consulta.getCliente() != null ? 
                 consulta.getCliente().getNombre() + " " + consulta.getCliente().getApellido() : "");
     }

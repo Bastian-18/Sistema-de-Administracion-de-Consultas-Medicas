@@ -10,9 +10,11 @@ import org.openxava.annotations.*;
 @Entity
 @Views({
     @View(name="Simple", members="nombre, apellido, especialidad, telefono"),
-    @View(name="Completa", members="nombre, apellido, especialidad, numerolicencia, telefono")
+    @View(name="Completa", members="nombre, apellido, especialidad, numerolicencia, telefono"),
+    @View(name="Busqueda", members="nombre, apellido, especialidad")
 })
-@Tab(properties="nombre, apellido, especialidad, numerolicencia, telefono")
+@Tab(properties="nombre, apellido, especialidad, numerolicencia, telefono", 
+     defaultOrder="${nombre} asc, ${apellido} asc")
 public class Doctor {
 
     @Id

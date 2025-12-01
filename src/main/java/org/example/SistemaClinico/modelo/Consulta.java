@@ -5,13 +5,15 @@ import lombok.Setter;
 import javax.persistence.*;
 import org.openxava.annotations.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Getter
 @Setter
 @Entity
 @Views({
     @View(name="Simple", members="fecha, hora, cliente, doctor, estado"),
-    @View(name="Completa", members="fecha, hora, cliente, doctor, motivo, estado, totalCosto")
+    @View(name="Completa", members="fecha, hora, cliente, doctor, motivo, estado, totalCosto"),
+    @View(name="Busqueda", members="fecha, hora, cliente, doctor, estado, totalCosto")
 })
 @Tab(properties="fecha, hora, cliente.nombre, cliente.apellido, doctor.nombre, doctor.apellido, estado, totalCosto")
 public class Consulta {
@@ -23,27 +25,28 @@ public class Consulta {
     @Hidden
     private int idConsulta;
 
-
-
     @Required
-    @Column(length = 20)
-    @DisplaySize(15)
-    private String fecha;
+    @Stereotype("DATE")
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fecha")
+    @DefaultValueCalculator(org.openxava.calculators.CurrentDateCalculator.class)
+    private Date fecha;
     
     @Required
+    @Stereotype("TIME")
     @Column(length = 20)
     @DisplaySize(10)
     private String hora;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "cliente_id")
-    @DescriptionsList(descriptionProperties = "nombre, apellido, dni")
+    @ReferenceView("Busqueda")
     @Required
     private Cliente cliente;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "doctor_id")
-    @DescriptionsList(descriptionProperties = "nombre, apellido, especialidad")
+    @ReferenceView("Busqueda")
     @Required
     private Doctor doctor;
 
@@ -51,9 +54,11 @@ public class Consulta {
     @Column(length = 500)
     private String motivo;
     
+    @Enumerated(EnumType.STRING)
     @Column(length = 50)
     @DisplaySize(20)
-    private String estado;
+    @DefaultValueCalculator(org.example.SistemaClinico.modelo.calculators.EstadoConsultaDefaultCalculator.class)
+    private EstadoConsulta estado;
     
     @Stereotype("MONEY")
     @Column(name = "totalcosto", precision = 10, scale = 2)
@@ -61,7 +66,7 @@ public class Consulta {
 
     public Consulta() {}
 
-    public Consulta(String fecha, String hora, Cliente cliente, Doctor doctor, String motivo, String estado, BigDecimal totalCosto) {
+    public Consulta(Date fecha, String hora, Cliente cliente, Doctor doctor, String motivo, EstadoConsulta estado, BigDecimal totalCosto) {
         this.fecha = fecha;
         this.hora = hora;
         this.cliente = cliente;
@@ -75,7 +80,7 @@ public class Consulta {
     public String toString() {
         return "Consulta{" +
                 "idConsulta=" + idConsulta +
-                ", fecha='" + fecha + '\'' +
+                ", fecha=" + (fecha != null ? fecha.toString() : "") +
                 ", hora='" + hora + '\'' +
                 ", cliente=" + cliente +
                 ", doctor=" + doctor +

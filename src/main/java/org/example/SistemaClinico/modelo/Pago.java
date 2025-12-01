@@ -5,6 +5,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import org.openxava.annotations.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -25,19 +26,18 @@ public class Pago {
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "consulta_id")
-    @DescriptionsList(
-        descriptionProperties = "fecha, hora, cliente.nombre, cliente.apellido, totalCosto",
-        order = "fecha DESC, hora DESC"
-    )
+    @ReferenceView("Busqueda")
     @Required
     @NoCreate
     @NoModify
     private Consulta consulta;
     
     @Required
-    @Column(length = 20)
-    @DisplaySize(15)
-    private String fechaPago;
+    @Stereotype("DATE")
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fechapago")
+    @DefaultValueCalculator(org.openxava.calculators.CurrentDateCalculator.class)
+    private Date fechaPago;
     
     @Required
     @Stereotype("MONEY")
@@ -45,12 +45,15 @@ public class Pago {
     private BigDecimal monto;
     
     @Required
+    @Enumerated(EnumType.STRING)
     @Column(length = 50)
-    private String metodoPago;
+    private MetodoPago metodoPago;
     
     @Required
+    @Enumerated(EnumType.STRING)
     @Column(length = 50)
-    private String estado;
+    @DefaultValueCalculator(org.example.SistemaClinico.modelo.calculators.EstadoPagoDefaultCalculator.class)
+    private EstadoPago estado;
     
     @Column(length = 100)
     @DisplaySize(40)
@@ -64,7 +67,7 @@ public class Pago {
     
     @Override
     public String toString() {
-        return "Pago " + fechaPago + " - " + 
+        return "Pago " + (fechaPago != null ? fechaPago.toString() : "") + " - " + 
                (monto != null ? monto.toString() : "0.00") + " - " + 
                (metodoPago != null ? metodoPago : "");
     }

@@ -10,7 +10,8 @@ import org.openxava.annotations.*;
 @Entity
 @Views({
     @View(name="Simple", members="nombre, apellido, dni, telefono"),
-    @View(name="Completa", members="nombre, apellido, dni, telefono, email")
+    @View(name="Completa", members="nombre, apellido, dni, telefono, email"),
+    @View(name="Busqueda", members="nombre, apellido, dni")
 })
 @Tab(properties="nombre, apellido, dni, telefono, email")
 public class Cliente {
