@@ -13,7 +13,7 @@ import java.util.Date;
 @Entity
 @Views({
     @View(name="Simple", members="fecha, hora, cliente, doctor, estado"),
-    @View(name="Completa", members="fecha, hora, cliente, doctor, motivo, estado, costo; tratamientos"),
+    @View(name="Completa", members="fecha, hora, cliente, doctor, motivo, estado, costo; tratamientos; pagos"),
     @View(name="Busqueda", members="fecha, hora, cliente, doctor, estado, costo")
 })
 @Tab(properties="fecha, hora, cliente.nombre, cliente.apellido, doctor.nombre, doctor.apellido, estado, costo")
@@ -75,6 +75,10 @@ public class Consulta {
     @OneToMany(mappedBy="consulta", cascade=CascadeType.ALL)
     @ListProperties("nombre, duracion")
     private java.util.Collection<Tratamiento> tratamientos;
+    
+    @OneToMany(mappedBy="consulta", cascade=CascadeType.ALL)
+    @ListProperties("fechaPago, monto, metodoPago, estado")
+    private java.util.Collection<Pago> pagos;
 
     public Consulta() {}
 
