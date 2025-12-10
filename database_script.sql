@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS consulta CASCADE;
 
 CREATE TABLE consulta (
     idconsulta SERIAL PRIMARY KEY,
-    fecha VARCHAR(20) NOT NULL,
+    fecha DATE NOT NULL,
     hora VARCHAR(20) NOT NULL,
     cliente_id INTEGER NOT NULL,
     doctor_id INTEGER NOT NULL,
@@ -67,7 +67,7 @@ DROP TABLE IF EXISTS cita CASCADE;
 
 CREATE TABLE cita (
     idcita SERIAL PRIMARY KEY,
-    fecha VARCHAR(20) NOT NULL,
+    fecha DATE NOT NULL,
     hora VARCHAR(20) NOT NULL,
     cliente_id INTEGER NOT NULL,
     doctor_id INTEGER NOT NULL,
@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS receta CASCADE;
 CREATE TABLE receta (
     idreceta SERIAL PRIMARY KEY,
     consulta_id INTEGER NOT NULL,
-    fechaemision VARCHAR(20) NOT NULL,
+    fechaemision DATE NOT NULL,
     medicamentos VARCHAR(200) NOT NULL,
     dosis VARCHAR(100),
     frecuencia VARCHAR(100),
@@ -105,7 +105,7 @@ DROP TABLE IF EXISTS pago CASCADE;
 CREATE TABLE pago (
     idpago SERIAL PRIMARY KEY,
     consulta_id INTEGER NOT NULL,
-    fechapago VARCHAR(20) NOT NULL,
+    fechapago DATE NOT NULL,
     monto DECIMAL(10, 2) NOT NULL,
     metodopago VARCHAR(50) NOT NULL DEFAULT 'Efectivo',
     estado VARCHAR(50) NOT NULL DEFAULT 'Pendiente',

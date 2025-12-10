@@ -1,23 +1,27 @@
 <!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PagosReport" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d1e2f3a4-b5c6-4791-d1e2-f3a4b5c6d7e8">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PagosReport" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="REPORT_DATE" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date()]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT 
-    p.idpago,
-    p.fechapago,
-    p.monto,
-    p.metodopago,
-    p.estado,
-    p.numeroreferencia,
-    p.notas,
-    c.fecha as consulta_fecha,
-    c.hora as consulta_hora,
-    cl.nombre as cliente_nombre,
-    cl.apellido as cliente_apellido
+   p.idpago,
+   p.fechapago,
+   p.monto,
+   p.metodopago,
+   p.estado,
+   p.numeroreferencia,
+   p.notas,
+   c.fecha as consulta_fecha,
+   c.hora as consulta_hora,
+   cl.nombre as cliente_nombre,
+   cl.apellido as cliente_apellido
 FROM pago p
 INNER JOIN consulta c ON p.consulta_id = c.idconsulta
 INNER JOIN cliente cl ON c.cliente_id = cl.idcliente
 ORDER BY p.fechapago DESC]]>
 	</queryString>
+
 	<field name="idpago" class="java.lang.Integer">
 		<fieldDescription><![CDATA[idpago]]></fieldDescription>
 	</field>
@@ -51,212 +55,248 @@ ORDER BY p.fechapago DESC]]>
 	<field name="cliente_apellido" class="java.lang.String">
 		<fieldDescription><![CDATA[cliente_apellido]]></fieldDescription>
 	</field>
+
+	<variable name="monto_SUM" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{monto}]]></variableExpression>
+		<initialValueExpression><![CDATA[java.math.BigDecimal.ZERO]]></initialValueExpression>
+	</variable>
+
 	<title>
-		<band height="50" splitType="Stretch">
+		<band height="70" splitType="Stretch">
+			<!-- Encabezado azul oscuro -->
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="30" uuid="e2f3a4b5-c6d7-4802-e2f3-a4b5c6d7e8f9"/>
+				<reportElement x="0" y="0" width="555" height="32" backcolor="#0D47A1" mode="Opaque" forecolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="18" isBold="true"/>
+					<font size="20" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Reporte de Pagos]]></text>
 			</staticText>
+			<!-- Subtítulo -->
+			<staticText>
+				<reportElement x="0" y="38" width="350" height="16"/>
+				<textElement>
+					<font size="10" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Sistema Clínico - Registro de pagos por consultas]]></text>
+			</staticText>
+			<!-- Línea divisoria -->
+			<staticText>
+				<reportElement x="0" y="56" width="555" height="1" backcolor="#BDBDBD" mode="Opaque"/>
+				<text><![CDATA[ ]]></text>
+			</staticText>
 		</band>
 	</title>
+
 	<pageHeader>
-		<band height="20" splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="30" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="80" height="30" uuid="f3a4b5c6-d7e8-4903-f3a4-b5c6d7e8f9a0"/>
+				<reportElement x="260" y="4" width="95" height="14"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Fecha de reporte:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy HH:mm">
+				<reportElement x="360" y="4" width="115" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REPORT_DATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="480" y="4" width="75" height="14"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" pdfFontName="Helvetica" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Pagos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<!-- Cabeceras gris claro -->
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="28" backcolor="#F5F5F5" mode="Opaque"/>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.5" lineColor="#E0E0E0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Fecha Pago]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="80" y="0" width="120" height="30" uuid="a4b5c6d7-e8f9-4004-a4b5-c6d7e8f9a0b1"/>
+				<reportElement x="80" y="0" width="120" height="28" backcolor="#F5F5F5" mode="Opaque"/>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.5" lineColor="#E0E0E0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Cliente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="200" y="0" width="100" height="30" uuid="b5c6d7e8-f9a0-4105-b5c6-d7e8f9a0b1c2"/>
+				<reportElement x="200" y="0" width="100" height="28" backcolor="#F5F5F5" mode="Opaque"/>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.5" lineColor="#E0E0E0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Monto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="300" y="0" width="100" height="30" uuid="c6d7e8f9-a0b1-4206-c6d7-e8f9a0b1c2d3"/>
+				<reportElement x="300" y="0" width="100" height="28" backcolor="#F5F5F5" mode="Opaque"/>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.5" lineColor="#E0E0E0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Método]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="400" y="0" width="80" height="30" uuid="d7e8f9a0-b1c2-4307-d7e8-f9a0b1c2d3e4"/>
+				<reportElement x="400" y="0" width="80" height="28" backcolor="#F5F5F5" mode="Opaque"/>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.5" lineColor="#E0E0E0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Estado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="480" y="0" width="75" height="30" uuid="e8f9a0b1-c2d3-4408-e8f9-a0b1c2d3e4f5"/>
+				<reportElement x="480" y="0" width="75" height="28" backcolor="#F5F5F5" mode="Opaque"/>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.5" lineColor="#E0E0E0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
 				<text><![CDATA[Referencia]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
+
 	<detail>
-		<band height="25" splitType="Stretch">
+		<band height="24" splitType="Stretch">
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="0" y="0" width="80" height="25" uuid="f9a0b1c2-d3e4-4509-f9a0-b1c2d3e4f5a6"/>
+				<reportElement x="0" y="0" width="80" height="22"/>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.25" lineColor="#EEEEEE"/>
+					<bottomPen lineWidth="0.25" lineColor="#E0E0E0"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="9" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fechapago}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="80" y="0" width="120" height="25" uuid="a0b1c2d3-e4f5-4600-a0b1-c2d3e4f5a6b7"/>
+				<reportElement x="80" y="0" width="120" height="22"/>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.25" lineColor="#EEEEEE"/>
+					<bottomPen lineWidth="0.25" lineColor="#E0E0E0"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="9" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cliente_nombre} + " " + $F{cliente_apellido}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00">
-				<reportElement x="200" y="0" width="100" height="25" uuid="b1c2d3e4-f5a6-4701-b1c2-d3e4f5a6b7c8"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="200" y="0" width="100" height="22"/>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.25" lineColor="#EEEEEE"/>
+					<bottomPen lineWidth="0.25" lineColor="#E0E0E0"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="9" pdfFontName="Helvetica"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{monto} != null) ? "$" + new java.text.DecimalFormat("#,##0.00").format($F{monto}) : "$0.00"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="300" y="0" width="100" height="25" uuid="c2d3e4f5-a6b7-4802-c2d3-e4f5a6b7c8d9"/>
+				<reportElement x="300" y="0" width="100" height="22"/>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.25" lineColor="#EEEEEE"/>
+					<bottomPen lineWidth="0.25" lineColor="#E0E0E0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="9" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{metodopago}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="400" y="0" width="80" height="25" uuid="d3e4f5a6-b7c8-4903-d3e4-f5a6b7c8d9e0"/>
+				<reportElement x="400" y="0" width="80" height="22"/>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.25" lineColor="#EEEEEE"/>
+					<bottomPen lineWidth="0.25" lineColor="#E0E0E0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="9" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="480" y="0" width="75" height="25" uuid="e4f5a6b7-c8d9-4004-e4f5-a6b7c8d9e0f1"/>
+				<reportElement x="480" y="0" width="75" height="22"/>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.25" lineColor="#EEEEEE"/>
+					<bottomPen lineWidth="0.25" lineColor="#E0E0E0"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="9" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numeroreferencia}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
+
 	<pageFooter>
-		<band height="30" splitType="Stretch">
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="250" height="16"/>
+				<textElement>
+					<font size="8" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Sistema Clínico - Confidencial]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="455" y="0" width="100" height="30" uuid="f5a6b7c8-d9e0-4105-f5a6-b7c8d9e0f1a2"/>
+				<reportElement x="355" y="4" width="120" height="16"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="9" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="555" y="0" width="0" height="30" uuid="a6b7c8d9-e0f1-4206-a6b7-c8d9e0f1a2b3"/>
+				<reportElement x="475" y="4" width="40" height="16"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9"/>
+					<font size="9" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
+	<summary>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="190" height="22" backcolor="#E3F2FD" mode="Opaque"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#0D47A1"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Total General:]]></text>
+			</staticText>
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement x="190" y="4" width="110" height="22" backcolor="#E3F2FD" mode="Opaque"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#0D47A1"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($V{REPORT_COUNT} > 0 && $V{monto_SUM} != null) ? "$" + new java.text.DecimalFormat("#,##0.00").format($V{monto_SUM}) : "$0.00"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
 </jasperReport>

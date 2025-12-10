@@ -62,6 +62,7 @@ public class Consulta {
     
     @Stereotype("MONEY")
     @Column(name = "totalcosto", precision = 10, scale = 2)
+    @DisplaySize(15)
     private BigDecimal totalCosto;
 
     public Consulta() {}

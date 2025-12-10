@@ -27,16 +27,16 @@ INSERT INTO doctor (nombre, apellido, especialidad, numerolicencia, telefono) VA
 
 -- ========== CONSULTAS ==========
 INSERT INTO consulta (fecha, hora, cliente_id, doctor_id, motivo, estado, totalcosto) VALUES
-('2025-02-10', '09:00', 1, 1, 'Dolor de cabeza persistente', 'Finalizada', 25.00),
-('2025-02-11', '10:30', 2, 2, 'Dolor en el pecho', 'Finalizada', 40.00),
-('2025-02-12', '14:00', 3, 3, 'Erupciones en la piel', 'Finalizada', 30.00),
-('2025-02-13', '08:00', 4, 4, 'Control pediátrico', 'Finalizada', 35.00),
-('2025-02-14', '11:00', 5, 5, 'Consulta ginecológica', 'Finalizada', 50.00),
-('2025-02-15', '15:30', 6, 6, 'Dolor en rodilla', 'Finalizada', 45.00),
-('2025-02-16', '09:30', 7, 7, 'Dolores de cabeza frecuentes', 'Finalizada', 55.00),
-('2025-02-17', '10:00', 8, 8, 'Consulta psicológica', 'Finalizada', 60.00),
-('2025-02-18', '14:30', 1, 2, 'Seguimiento cardíaco', 'Pendiente', 40.00),
-('2025-02-19', '16:00', 2, 3, 'Revisión dermatológica', 'Pendiente', 30.00);
+('2025-02-10', '09:00', 1, 1, 'Dolor de cabeza persistente', 'COMPLETADA', 25.00),
+('2025-02-11', '10:30', 2, 2, 'Dolor en el pecho', 'COMPLETADA', 40.00),
+('2025-02-12', '14:00', 3, 3, 'Erupciones en la piel', 'COMPLETADA', 30.00),
+('2025-02-13', '08:00', 4, 4, 'Control pediátrico', 'COMPLETADA', 35.00),
+('2025-02-14', '11:00', 5, 5, 'Consulta ginecológica', 'COMPLETADA', 50.00),
+('2025-02-15', '15:30', 6, 6, 'Dolor en rodilla', 'COMPLETADA', 45.00),
+('2025-02-16', '09:30', 7, 7, 'Dolores de cabeza frecuentes', 'COMPLETADA', 55.00),
+('2025-02-17', '10:00', 8, 8, 'Consulta psicológica', 'COMPLETADA', 60.00),
+('2025-02-18', '14:30', 1, 2, 'Seguimiento cardíaco', 'PENDIENTE', 40.00),
+('2025-02-19', '16:00', 2, 3, 'Revisión dermatológica', 'PENDIENTE', 30.00);
 
 -- ========== TRATAMIENTOS ==========
 INSERT INTO tratamiento (nombre, descripcion, duracion, medicamentos, consulta_id) VALUES
@@ -53,18 +53,18 @@ INSERT INTO tratamiento (nombre, descripcion, duracion, medicamentos, consulta_i
 
 -- ========== CITAS ==========
 INSERT INTO cita (fecha, hora, cliente_id, doctor_id, estado, notas, recordatorio) VALUES
-('2025-02-20', '08:30', 1, 1, 'Programada', 'Control del dolor de cabeza', 'Sí'),
-('2025-02-21', '11:00', 2, 2, 'Programada', 'Seguimiento cardiaco', 'No'),
-('2025-02-22', '15:00', 3, 3, 'Programada', 'Revisión dermatológica', 'Sí'),
-('2025-02-23', '09:00', 4, 4, 'Confirmada', 'Control pediátrico mensual', 'Sí'),
-('2025-02-24', '10:30', 5, 5, 'Programada', 'Consulta ginecológica de rutina', 'Sí'),
-('2025-02-25', '14:00', 6, 6, 'Programada', 'Revisión ortopédica', 'No'),
-('2025-02-26', '16:30', 7, 7, 'Confirmada', 'Seguimiento neurológico', 'Sí'),
-('2025-02-27', '08:00', 8, 8, 'Programada', 'Sesión de terapia', 'Sí'),
-('2025-02-28', '11:30', 1, 2, 'Programada', 'Consulta cardiológica', 'Sí'),
-('2025-03-01', '13:00', 2, 3, 'Cancelada', 'Paciente canceló por enfermedad', 'No'),
-('2025-03-02', '15:30', 3, 1, 'Completada', 'Consulta general completada', 'Sí'),
-('2025-03-03', '09:30', 4, 4, 'Programada', 'Vacunación pediátrica', 'Sí');
+('2025-02-20', '08:30', 1, 1, 'PROGRAMADA', 'Control del dolor de cabeza', 'Sí'),
+('2025-02-21', '11:00', 2, 2, 'PROGRAMADA', 'Seguimiento cardiaco', 'No'),
+('2025-02-22', '15:00', 3, 3, 'PROGRAMADA', 'Revisión dermatológica', 'Sí'),
+('2025-02-23', '09:00', 4, 4, 'CONFIRMADA', 'Control pediátrico mensual', 'Sí'),
+('2025-02-24', '10:30', 5, 5, 'PROGRAMADA', 'Consulta ginecológica de rutina', 'Sí'),
+('2025-02-25', '14:00', 6, 6, 'PROGRAMADA', 'Revisión ortopédica', 'No'),
+('2025-02-26', '16:30', 7, 7, 'CONFIRMADA', 'Seguimiento neurológico', 'Sí'),
+('2025-02-27', '08:00', 8, 8, 'PROGRAMADA', 'Sesión de terapia', 'Sí'),
+('2025-02-28', '11:30', 1, 2, 'PROGRAMADA', 'Consulta cardiológica', 'Sí'),
+('2025-03-01', '13:00', 2, 3, 'CANCELADA', 'Paciente canceló por enfermedad', 'No'),
+('2025-03-02', '15:30', 3, 1, 'COMPLETADA', 'Consulta general completada', 'Sí'),
+('2025-03-03', '09:30', 4, 4, 'PROGRAMADA', 'Vacunación pediátrica', 'Sí');
 
 -- ========== RECETAS ==========
 INSERT INTO receta (consulta_id, fechaemision, medicamentos, dosis, frecuencia, duracion, instrucciones) VALUES
@@ -81,14 +81,14 @@ INSERT INTO receta (consulta_id, fechaemision, medicamentos, dosis, frecuencia, 
 
 -- ========== PAGOS ==========
 INSERT INTO pago (consulta_id, fechapago, monto, metodopago, estado, numeroreferencia, notas) VALUES
-(1, '2025-02-10', 25.00, 'Efectivo', 'Completado', NULL, 'Pago sin incidencias'),
-(2, '2025-02-11', 40.00, 'Tarjeta de Crédito', 'Completado', 'REF-01028', 'Pago con Visa'),
-(3, '2025-02-12', 30.00, 'Transferencia', 'Completado', 'TRF-2025-001', 'Transferencia bancaria confirmada'),
-(4, '2025-02-13', 35.00, 'Efectivo', 'Completado', NULL, 'Pago en efectivo'),
-(5, '2025-02-14', 50.00, 'Tarjeta de Débito', 'Completado', 'REF-01029', 'Pago con tarjeta débito'),
-(6, '2025-02-15', 45.00, 'Efectivo', 'Completado', NULL, 'Pago completo'),
-(7, '2025-02-16', 55.00, 'Transferencia', 'Completado', 'TRF-2025-002', 'Transferencia realizada'),
-(8, '2025-02-17', 60.00, 'Tarjeta de Crédito', 'Completado', 'REF-01030', 'Pago con Mastercard'),
-(9, '2025-02-18', 40.00, 'Efectivo', 'Pendiente', NULL, 'Cliente pagará en la próxima visita'),
-(10, '2025-02-19', 30.00, 'Cheque', 'Pendiente', 'CHQ-2025-001', 'Cheque pendiente de cobro');
+(1, '2025-02-10', 25.00, 'EFECTIVO', 'PAGADO', NULL, 'Pago sin incidencias'),
+(2, '2025-02-11', 40.00, 'TARJETA', 'PAGADO', 'REF-01028', 'Pago con Visa'),
+(3, '2025-02-12', 30.00, 'TRANSFERENCIA', 'PAGADO', 'TRF-2025-001', 'Transferencia bancaria confirmada'),
+(4, '2025-02-13', 35.00, 'EFECTIVO', 'PAGADO', NULL, 'Pago en efectivo'),
+(5, '2025-02-14', 50.00, 'TARJETA', 'PAGADO', 'REF-01029', 'Pago con tarjeta débito'),
+(6, '2025-02-15', 45.00, 'EFECTIVO', 'PAGADO', NULL, 'Pago completo'),
+(7, '2025-02-16', 55.00, 'TRANSFERENCIA', 'PAGADO', 'TRF-2025-002', 'Transferencia realizada'),
+(8, '2025-02-17', 60.00, 'TARJETA', 'PAGADO', 'REF-01030', 'Pago con Mastercard'),
+(9, '2025-02-18', 40.00, 'EFECTIVO', 'PENDIENTE', NULL, 'Cliente pagará en la próxima visita'),
+(10, '2025-02-19', 30.00, 'CHEQUE', 'PENDIENTE', 'CHQ-2025-001', 'Cheque pendiente de cobro');
 

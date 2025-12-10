@@ -1,212 +1,167 @@
 <!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ClientesReport" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7">
-	<queryString>
-		<![CDATA[SELECT 
-    idcliente,
-    nombre,
-    apellido,
-    dni,
-    telefono,
-    email
+<jasperReport name="ClientesReport" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="REPORT_DATE" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date()]]></defaultValueExpression>
+	</parameter>
+	<query language="sql"><![CDATA[SELECT 
+   idcliente,
+   nombre,
+   apellido,
+   dni,
+   telefono,
+   email
 FROM cliente
-ORDER BY apellido ASC, nombre ASC]]>
-	</queryString>
+ORDER BY apellido ASC, nombre ASC]]></query>
 	<field name="idcliente" class="java.lang.Integer">
-		<fieldDescription><![CDATA[idcliente]]></fieldDescription>
+		<description><![CDATA[idcliente]]></description>
 	</field>
 	<field name="nombre" class="java.lang.String">
-		<fieldDescription><![CDATA[nombre]]></fieldDescription>
+		<description><![CDATA[nombre]]></description>
 	</field>
 	<field name="apellido" class="java.lang.String">
-		<fieldDescription><![CDATA[apellido]]></fieldDescription>
+		<description><![CDATA[apellido]]></description>
 	</field>
 	<field name="dni" class="java.lang.String">
-		<fieldDescription><![CDATA[dni]]></fieldDescription>
+		<description><![CDATA[dni]]></description>
 	</field>
 	<field name="telefono" class="java.lang.String">
-		<fieldDescription><![CDATA[telefono]]></fieldDescription>
+		<description><![CDATA[telefono]]></description>
 	</field>
 	<field name="email" class="java.lang.String">
-		<fieldDescription><![CDATA[email]]></fieldDescription>
+		<description><![CDATA[email]]></description>
 	</field>
-	<title>
-		<band height="50" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="0" width="555" height="30" uuid="b2c3d4e5-f6a7-4890-b1c2-d3e4f5a6b7c8"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="18" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Reporte de Clientes]]></text>
-			</staticText>
-		</band>
+
+	<title height="70" splitType="Stretch">
+		<!-- Encabezado principal azul oscuro -->
+		<element kind="staticText" uuid="b2c3d4e5-f6a7-4890-b1c2-d3e4f5a6b7c8" mode="Opaque" x="0" y="0" width="555" height="32" backcolor="#0D47A1" fontSize="20.0" pdfFontName="Helvetica-Bold" bold="true" hTextAlign="Center" vTextAlign="Middle" forecolor="#FFFFFF">
+			<text><![CDATA[Reporte de Clientes]]></text>
+		</element>
+		<!-- Subtítulo / información del sistema -->
+		<element kind="staticText" uuid="10b20c30-d40e-50f6-a7b8-c9d0e1f2a3b4" x="0" y="38" width="350" height="16" fontSize="10.0" forecolor="#424242">
+			<text><![CDATA[Sistema Clínico - Listado maestro de clientes]]></text>
+		</element>
+		<!-- Línea divisoria fina -->
+		<element kind="staticText" uuid="11111111-2222-3333-4444-555555555555" x="0" y="56" width="555" height="1" backcolor="#BDBDBD" mode="Opaque">
+			<text><![CDATA[ ]]></text>
+		</element>
 	</title>
-	<pageHeader>
-		<band height="20" splitType="Stretch"/>
+
+	<pageHeader height="22" splitType="Stretch">
+		<element kind="staticText" uuid="20c30d40-e50f-61a7-b8c9-d0e1f2a3b4c5" x="260" y="4" width="95" height="14" fontSize="8.0" bold="true" hTextAlign="Right" vTextAlign="Middle" forecolor="#616161">
+			<text><![CDATA[Fecha de reporte:]]></text>
+		</element>
+		<element kind="textField" uuid="30d40e50-f61a-72b8-c9d0-e1f2a3b4c5d6" x="360" y="4" width="115" height="14" fontSize="8.0" pattern="dd/MM/yyyy HH:mm" hTextAlign="Left" vTextAlign="Middle" forecolor="#424242">
+			<expression><![CDATA[$P{REPORT_DATE}]]></expression>
+		</element>
+		<element kind="staticText" uuid="40e50f61-a72b-83c9-d0e1-f2a3b4c5d6e7" x="480" y="4" width="75" height="14" fontSize="8.0" hTextAlign="Right" vTextAlign="Middle" forecolor="#9E9E9E">
+			<text><![CDATA[Clientes]]></text>
+		</element>
 	</pageHeader>
-	<columnHeader>
-		<band height="30" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="0" width="120" height="30" uuid="c3d4e5f6-a7b8-4901-c2d3-e4f5a6b7c8d9"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Nombre]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="120" y="0" width="120" height="30" uuid="d4e5f6a7-b8c9-4012-d3e4-f5a6b7c8d9e0"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Apellido]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="240" y="0" width="100" height="30" uuid="e5f6a7b8-c9d0-4123-e4f5-a6b7c8d9e0f1"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[DNI]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="340" y="0" width="100" height="30" uuid="f6a7b8c9-d0e1-4234-f5a6-b7c8d9e0f1a2"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Teléfono]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="440" y="0" width="115" height="30" uuid="a7b8c9d0-e1f2-4345-a6b7-c8d9e0f1a2b3"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Email]]></text>
-			</staticText>
-		</band>
+
+	<columnHeader height="32" splitType="Stretch">
+		<!-- Cabeceras gris claro -->
+		<element kind="staticText" uuid="c3d4e5f6-a7b8-4901-c2d3-e4f5a6b7c8d9" mode="Opaque" x="0" y="0" width="120" height="28" backcolor="#F5F5F5" bold="true" hTextAlign="Center" vTextAlign="Middle" forecolor="#424242">
+			<text><![CDATA[Nombre]]></text>
+			<box>
+				<pen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<topPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<leftPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<bottomPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<rightPen lineWidth="0.5" lineColor="#E0E0E0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="d4e5f6a7-b8c9-4012-d3e4-f5a6b7c8d9e0" mode="Opaque" x="120" y="0" width="120" height="28" backcolor="#F5F5F5" bold="true" hTextAlign="Center" vTextAlign="Middle" forecolor="#424242">
+			<text><![CDATA[Apellido]]></text>
+			<box>
+				<pen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<topPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<leftPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<bottomPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<rightPen lineWidth="0.5" lineColor="#E0E0E0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="e5f6a7b8-c9d0-4123-e4f5-a6b7c8d9e0f1" mode="Opaque" x="240" y="0" width="100" height="28" backcolor="#F5F5F5" bold="true" hTextAlign="Center" vTextAlign="Middle" forecolor="#424242">
+			<text><![CDATA[DNI]]></text>
+			<box>
+				<pen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<topPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<leftPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<bottomPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<rightPen lineWidth="0.5" lineColor="#E0E0E0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="f6a7b8c9-d0e1-4234-f5a6-b7c8d9e0f1a2" mode="Opaque" x="340" y="0" width="100" height="28" backcolor="#F5F5F5" bold="true" hTextAlign="Center" vTextAlign="Middle" forecolor="#424242">
+			<text><![CDATA[Teléfono]]></text>
+			<box>
+				<pen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<topPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<leftPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<bottomPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<rightPen lineWidth="0.5" lineColor="#E0E0E0"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="a7b8c9d0-e1f2-4345-a6b7-c8d9e0f1a2b3" mode="Opaque" x="440" y="0" width="115" height="28" backcolor="#F5F5F5" bold="true" hTextAlign="Center" vTextAlign="Middle" forecolor="#424242">
+			<text><![CDATA[Email]]></text>
+			<box>
+				<pen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<topPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<leftPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<bottomPen lineWidth="0.5" lineColor="#E0E0E0"/>
+				<rightPen lineWidth="0.5" lineColor="#E0E0E0"/>
+			</box>
+		</element>
 	</columnHeader>
+
 	<detail>
-		<band height="25" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="0" width="120" height="25" uuid="b8c9d0e1-f2a3-4456-b7c8-d9e0f1a2b3c4"/>
+		<band height="24" splitType="Stretch">
+			<!-- Filas con bordes suaves -->
+			<element kind="textField" uuid="b8c9d0e1-f2a3-4456-b7c8-d9e0f1a2b3c4" x="0" y="0" width="120" height="22" fontSize="9.0" vTextAlign="Middle" forecolor="#424242">
+				<expression><![CDATA[$F{nombre}]]></expression>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.25" lineColor="#EEEEEE"/>
+					<bottomPen lineWidth="0.25" lineColor="#E0E0E0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="120" y="0" width="120" height="25" uuid="c9d0e1f2-a3b4-4567-c8d9-e0f1a2b3c4d5"/>
+			</element>
+			<element kind="textField" uuid="c9d0e1f2-a3b4-4567-c8d9-e0f1a2b3c4d5" x="120" y="0" width="120" height="22" fontSize="9.0" vTextAlign="Middle" forecolor="#424242">
+				<expression><![CDATA[$F{apellido}]]></expression>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.25" lineColor="#EEEEEE"/>
+					<bottomPen lineWidth="0.25" lineColor="#E0E0E0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="240" y="0" width="100" height="25" uuid="d0e1f2a3-b4c5-4678-d9e0-f1a2b3c4d5e6"/>
+			</element>
+			<element kind="textField" uuid="d0e1f2a3-b4c5-4678-d9e0-f1a2b3c4d5e6" x="240" y="0" width="100" height="22" fontSize="9.0" vTextAlign="Middle" forecolor="#424242">
+				<expression><![CDATA[$F{dni}]]></expression>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.25" lineColor="#EEEEEE"/>
+					<bottomPen lineWidth="0.25" lineColor="#E0E0E0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="340" y="0" width="100" height="25" uuid="e1f2a3b4-c5d6-4789-e0f1-a2b3c4d5e6f7"/>
+			</element>
+			<element kind="textField" uuid="e1f2a3b4-c5d6-4789-e0f1-a2b3c4d5e6f7" x="340" y="0" width="100" height="22" fontSize="9.0" vTextAlign="Middle" forecolor="#424242">
+				<expression><![CDATA[$F{telefono}]]></expression>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.25" lineColor="#EEEEEE"/>
+					<bottomPen lineWidth="0.25" lineColor="#E0E0E0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="440" y="0" width="115" height="25" uuid="f2a3b4c5-d6e7-4890-f1a2-b3c4d5e6f7a8"/>
+			</element>
+			<element kind="textField" uuid="f2a3b4c5-d6e7-4890-f1a2-b3c4d5e6f7a8" x="440" y="0" width="115" height="22" fontSize="9.0" vTextAlign="Middle" forecolor="#424242">
+				<expression><![CDATA[$F{email}]]></expression>
 				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<pen lineWidth="0.25" lineColor="#EEEEEE"/>
+					<bottomPen lineWidth="0.25" lineColor="#E0E0E0"/>
 				</box>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
-			</textField>
+			</element>
 		</band>
 	</detail>
-	<pageFooter>
-		<band height="30" splitType="Stretch">
-			<textField>
-				<reportElement x="455" y="0" width="100" height="30" uuid="a3b4c5d6-e7f8-4901-a2b3-c4d5e6f7a8b9"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement x="555" y="0" width="0" height="30" uuid="b4c5d6e7-f8a9-4012-b3c4-d5e6f7a8b9c0"/>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-		</band>
+
+	<pageFooter height="26" splitType="Stretch">
+		<element kind="staticText" uuid="99999999-aaaa-bbbb-cccc-dddddddddddd" x="0" y="4" width="250" height="16" fontSize="8.0" forecolor="#9E9E9E">
+			<text><![CDATA[Sistema Clínico - Confidencial]]></text>
+		</element>
+		<element kind="textField" uuid="a3b4c5d6-e7f8-4901-a2b3-c4d5e6f7a8b9" x="355" y="4" width="120" height="16" fontSize="9.0" hTextAlign="Right" vTextAlign="Middle" forecolor="#616161">
+			<expression><![CDATA["Página " + $V{PAGE_NUMBER} + " de "]]></expression>
+		</element>
+		<element kind="textField" uuid="b4c5d6e7-f8a9-4012-b3c4-d5e6f7a8b9c0" x="475" y="4" width="40" height="16" fontSize="9.0" evaluationTime="Report" hTextAlign="Left" vTextAlign="Middle" forecolor="#616161">
+			<expression><![CDATA[$V{PAGE_NUMBER}]]></expression>
+		</element>
 	</pageFooter>
 </jasperReport>
