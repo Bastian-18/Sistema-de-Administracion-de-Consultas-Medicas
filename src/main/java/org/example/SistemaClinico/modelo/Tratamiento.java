@@ -41,10 +41,7 @@ public class Tratamiento {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "consulta_id")
-    @DescriptionsList(
-        descriptionProperties = "fecha, hora, cliente.nombre, cliente.apellido",
-        order = "fecha DESC, hora DESC"
-    )
+    @ReferenceView("Busqueda")
     @Required
     @NoCreate
     @NoModify
