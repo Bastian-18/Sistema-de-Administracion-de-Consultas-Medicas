@@ -13,6 +13,8 @@ import java.util.Date;
     @View(name="Simple", members="fecha, hora, cliente, doctor, estado"),
     @View(name="Completa", members="fecha, hora, cliente, doctor, estado, notas")
 })
+
+
 @Tab(properties="fecha, hora, cliente.nombre, cliente.apellido, doctor.nombre, doctor.apellido, estado")
 public class Cita {
     
