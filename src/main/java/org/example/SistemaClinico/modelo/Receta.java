@@ -61,12 +61,15 @@ public class Receta {
     private String instrucciones;
     
     public Receta() {}
-    
+
+
+
+
     @Override
     public String toString() {
-        return "Receta " + (fechaEmision != null ? fechaEmision.toString() : "") + " - " + 
-               (consulta != null && consulta.getCliente() != null ? 
-                consulta.getCliente().getNombre() + " " + consulta.getCliente().getApellido() : "");
+        return "Receta " + (fechaEmision != null ? fechaEmision.toString() : "") + " - " +
+                (consulta != null && consulta.getCliente() != null ?
+                        consulta.getCliente().getNombre() + " " + consulta.getCliente().getApellido() : "");
     }
 }
 

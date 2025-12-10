@@ -50,6 +50,7 @@ public class Consulta {
     @Required
     private Doctor doctor;
 
+
     @Stereotype("MEMO")
     @Column(length = 500)
     private String motivo;
