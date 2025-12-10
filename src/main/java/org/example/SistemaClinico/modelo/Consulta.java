@@ -3,6 +3,7 @@ package org.example.SistemaClinico.modelo;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import org.openxava.annotations.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -66,6 +67,7 @@ public class Consulta {
     private EstadoConsulta estado;
     
     @Stereotype("MONEY")
+    @Min(value = 0, message = "El costo no puede ser negativo")
     @Column(name = "costo", precision = 10, scale = 2)
     @DisplaySize(15)
     private BigDecimal costo;
