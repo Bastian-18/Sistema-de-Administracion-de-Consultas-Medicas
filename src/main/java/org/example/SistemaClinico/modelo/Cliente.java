@@ -3,6 +3,7 @@ package org.example.SistemaClinico.modelo;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import org.openxava.annotations.*;
 
 @Getter
@@ -36,6 +37,7 @@ public class Cliente {
     @Required
     @Column(length = 50, unique = true)
     @DisplaySize(20)
+    @Pattern(regexp="^\\d{3}-\\d{6}-\\d{4}[A-Y]$", message="El DNI debe tener el formato 000-000000-0000A")
     private String dni;
     
     @Column(length = 50)

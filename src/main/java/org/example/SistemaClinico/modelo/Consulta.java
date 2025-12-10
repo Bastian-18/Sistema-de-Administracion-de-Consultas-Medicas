@@ -12,10 +12,10 @@ import java.util.Date;
 @Entity
 @Views({
     @View(name="Simple", members="fecha, hora, cliente, doctor, estado"),
-    @View(name="Completa", members="fecha, hora, cliente, doctor, motivo, estado, totalCosto"),
-    @View(name="Busqueda", members="fecha, hora, cliente, doctor, estado, totalCosto")
+    @View(name="Completa", members="fecha, hora, cliente, doctor, motivo, estado, costo; tratamientos"),
+    @View(name="Busqueda", members="fecha, hora, cliente, doctor, estado, costo")
 })
-@Tab(properties="fecha, hora, cliente.nombre, cliente.apellido, doctor.nombre, doctor.apellido, estado, totalCosto")
+@Tab(properties="fecha, hora, cliente.nombre, cliente.apellido, doctor.nombre, doctor.apellido, estado, costo")
 public class Consulta {
 
     @Id
@@ -61,20 +61,24 @@ public class Consulta {
     private EstadoConsulta estado;
     
     @Stereotype("MONEY")
-    @Column(name = "totalcosto", precision = 10, scale = 2)
+    @Column(name = "costo", precision = 10, scale = 2)
     @DisplaySize(15)
-    private BigDecimal totalCosto;
+    private BigDecimal costo;
+    
+    @OneToMany(mappedBy="consulta", cascade=CascadeType.ALL)
+    @ListProperties("nombre, duracion")
+    private java.util.Collection<Tratamiento> tratamientos;
 
     public Consulta() {}
 
-    public Consulta(Date fecha, String hora, Cliente cliente, Doctor doctor, String motivo, EstadoConsulta estado, BigDecimal totalCosto) {
+    public Consulta(Date fecha, String hora, Cliente cliente, Doctor doctor, String motivo, EstadoConsulta estado, BigDecimal costo) {
         this.fecha = fecha;
         this.hora = hora;
         this.cliente = cliente;
         this.doctor = doctor;
         this.motivo = motivo;
         this.estado = estado;
-        this.totalCosto = totalCosto;
+        this.costo = costo;
     }
 
     @Override
@@ -87,7 +91,7 @@ public class Consulta {
                 ", doctor=" + doctor +
                 ", motivo='" + motivo + '\'' +
                 ", estado='" + estado + '\'' +
-                ", totalCosto=" + totalCosto +
+                ", costo=" + costo +
                 '}';
     }
 }

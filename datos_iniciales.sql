@@ -5,14 +5,14 @@
 
 -- ========== CLIENTES ==========
 INSERT INTO cliente (nombre, apellido, dni, telefono, email) VALUES
-('Carlos', 'Ramírez', '001-123456', '8888-1111', 'carlos.ramirez@example.com'),
-('María', 'Lopez', '002-654321', '8888-2222', 'maria.lopez@example.com'),
-('Javier', 'García', '003-789123', '8888-3333', 'javier.garcia@example.com'),
-('Laura', 'Martínez', '004-456789', '8888-4444', 'laura.martinez@example.com'),
-('Pedro', 'Fernández', '005-321654', '8888-5555', 'pedro.fernandez@example.com'),
-('Ana', 'Rodríguez', '006-987654', '8888-6666', 'ana.rodriguez@example.com'),
-('Luis', 'González', '007-147258', '8888-7777', 'luis.gonzalez@example.com'),
-('Carmen', 'Sánchez', '008-258369', '8888-8888', 'carmen.sanchez@example.com');
+('Carlos', 'Ramírez', '001-200290-0001A', '8888-1111', 'carlos.ramirez@example.com'),
+('María', 'Lopez', '001-150585-0002B', '8888-2222', 'maria.lopez@example.com'),
+('Javier', 'García', '201-100888-0003C', '8888-3333', 'javier.garcia@example.com'),
+('Laura', 'Martínez', '401-251292-0004D', '8888-4444', 'laura.martinez@example.com'),
+('Pedro', 'Fernández', '001-300180-0005E', '8888-5555', 'pedro.fernandez@example.com'),
+('Ana', 'Rodríguez', '001-050695-0006F', '8888-6666', 'ana.rodriguez@example.com'),
+('Luis', 'González', '501-120387-0007G', '8888-7777', 'luis.gonzalez@example.com'),
+('Carmen', 'Sánchez', '001-221199-0008H', '8888-8888', 'carmen.sanchez@example.com');
 
 -- ========== DOCTORES ==========
 INSERT INTO doctor (nombre, apellido, especialidad, numerolicencia, telefono) VALUES
@@ -26,7 +26,7 @@ INSERT INTO doctor (nombre, apellido, especialidad, numerolicencia, telefono) VA
 ('Andrés', 'Castro', 'Psiquiatría', 'PSI-789', '7777-8888');
 
 -- ========== CONSULTAS ==========
-INSERT INTO consulta (fecha, hora, cliente_id, doctor_id, motivo, estado, totalcosto) VALUES
+INSERT INTO consulta (fecha, hora, cliente_id, doctor_id, motivo, estado, costo) VALUES
 ('2025-02-10', '09:00', 1, 1, 'Dolor de cabeza persistente', 'COMPLETADA', 25.00),
 ('2025-02-11', '10:30', 2, 2, 'Dolor en el pecho', 'COMPLETADA', 40.00),
 ('2025-02-12', '14:00', 3, 3, 'Erupciones en la piel', 'COMPLETADA', 30.00),
@@ -52,19 +52,19 @@ INSERT INTO tratamiento (nombre, descripcion, duracion, medicamentos, consulta_i
 ('Tratamiento tópico', 'Aplicación de cremas', '2 semanas', 'Antifúngicos', 10);
 
 -- ========== CITAS ==========
-INSERT INTO cita (fecha, hora, cliente_id, doctor_id, estado, notas, recordatorio) VALUES
-('2025-02-20', '08:30', 1, 1, 'PROGRAMADA', 'Control del dolor de cabeza', 'Sí'),
-('2025-02-21', '11:00', 2, 2, 'PROGRAMADA', 'Seguimiento cardiaco', 'No'),
-('2025-02-22', '15:00', 3, 3, 'PROGRAMADA', 'Revisión dermatológica', 'Sí'),
-('2025-02-23', '09:00', 4, 4, 'CONFIRMADA', 'Control pediátrico mensual', 'Sí'),
-('2025-02-24', '10:30', 5, 5, 'PROGRAMADA', 'Consulta ginecológica de rutina', 'Sí'),
-('2025-02-25', '14:00', 6, 6, 'PROGRAMADA', 'Revisión ortopédica', 'No'),
-('2025-02-26', '16:30', 7, 7, 'CONFIRMADA', 'Seguimiento neurológico', 'Sí'),
-('2025-02-27', '08:00', 8, 8, 'PROGRAMADA', 'Sesión de terapia', 'Sí'),
-('2025-02-28', '11:30', 1, 2, 'PROGRAMADA', 'Consulta cardiológica', 'Sí'),
-('2025-03-01', '13:00', 2, 3, 'CANCELADA', 'Paciente canceló por enfermedad', 'No'),
-('2025-03-02', '15:30', 3, 1, 'COMPLETADA', 'Consulta general completada', 'Sí'),
-('2025-03-03', '09:30', 4, 4, 'PROGRAMADA', 'Vacunación pediátrica', 'Sí');
+INSERT INTO cita (fecha, hora, cliente_id, doctor_id, estado, notas) VALUES
+('2025-02-20', '08:30', 1, 1, 'PROGRAMADA', 'Control del dolor de cabeza'),
+('2025-02-21', '11:00', 2, 2, 'PROGRAMADA', 'Seguimiento cardiaco'),
+('2025-02-22', '15:00', 3, 3, 'PROGRAMADA', 'Revisión dermatológica'),
+('2025-02-23', '09:00', 4, 4, 'CONFIRMADA', 'Control pediátrico mensual'),
+('2025-02-24', '10:30', 5, 5, 'PROGRAMADA', 'Consulta ginecológica de rutina'),
+('2025-02-25', '14:00', 6, 6, 'PROGRAMADA', 'Revisión ortopédica'),
+('2025-02-26', '16:30', 7, 7, 'CONFIRMADA', 'Seguimiento neurológico'),
+('2025-02-27', '08:00', 8, 8, 'PROGRAMADA', 'Sesión de terapia'),
+('2025-02-28', '11:30', 1, 2, 'PROGRAMADA', 'Consulta cardiológica'),
+('2025-03-01', '13:00', 2, 3, 'CANCELADA', 'Paciente canceló por enfermedad'),
+('2025-03-02', '15:30', 3, 1, 'COMPLETADA', 'Consulta general completada'),
+('2025-03-03', '09:30', 4, 4, 'PROGRAMADA', 'Vacunación pediátrica');
 
 -- ========== RECETAS ==========
 INSERT INTO receta (consulta_id, fechaemision, medicamentos, dosis, frecuencia, duracion, instrucciones) VALUES

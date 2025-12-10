@@ -10,7 +10,7 @@
    c.hora,
    c.estado,
    c.motivo,
-   c.totalcosto,
+   c.costo,
    cl.nombre as cliente_nombre,
    cl.apellido as cliente_apellido,
    cl.dni as cliente_dni,
@@ -38,8 +38,8 @@ ORDER BY c.fecha DESC, c.hora DESC]]>
 	<field name="motivo" class="java.lang.String">
 		<fieldDescription><![CDATA[motivo]]></fieldDescription>
 	</field>
-	<field name="totalcosto" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[totalcosto]]></fieldDescription>
+	<field name="costo" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[costo]]></fieldDescription>
 	</field>
 	<field name="cliente_nombre" class="java.lang.String">
 		<fieldDescription><![CDATA[cliente_nombre]]></fieldDescription>
@@ -60,8 +60,8 @@ ORDER BY c.fecha DESC, c.hora DESC]]>
 		<fieldDescription><![CDATA[doctor_especialidad]]></fieldDescription>
 	</field>
 
-	<variable name="totalcosto_SUM" class="java.math.BigDecimal" calculation="Sum">
-		<variableExpression><![CDATA[$F{totalcosto}]]></variableExpression>
+	<variable name="costo_SUM" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{costo}]]></variableExpression>
 		<initialValueExpression><![CDATA[java.math.BigDecimal.ZERO]]></initialValueExpression>
 	</variable>
 
@@ -178,7 +178,7 @@ ORDER BY c.fecha DESC, c.hora DESC]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Total]]></text>
+				<text><![CDATA[Costo]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -249,7 +249,7 @@ ORDER BY c.fecha DESC, c.hora DESC]]>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9" pdfFontName="Helvetica"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($F{totalcosto} != null) ? "$" + new java.text.DecimalFormat("#,##0.00").format($F{totalcosto}) : "$0.00"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($F{costo} != null) ? "C$" + new java.text.DecimalFormat("#,##0.00").format($F{costo}) : "C$0.00"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -299,7 +299,7 @@ ORDER BY c.fecha DESC, c.hora DESC]]>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
-				<textFieldExpression><![CDATA[($V{REPORT_COUNT} > 0 && $V{totalcosto_SUM} != null) ? "$" + new java.text.DecimalFormat("#,##0.00").format($V{totalcosto_SUM}) : "$0.00"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[($V{REPORT_COUNT} > 0 && $V{costo_SUM} != null) ? "C$" + new java.text.DecimalFormat("#,##0.00").format($V{costo_SUM}) : "C$0.00"]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

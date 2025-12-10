@@ -38,7 +38,7 @@ CREATE TABLE consulta (
     doctor_id INTEGER NOT NULL,
     motivo TEXT,
     estado VARCHAR(50),
-    totalcosto DECIMAL(10, 2),
+    costo DECIMAL(10, 2),
     CONSTRAINT fk_consulta_cliente
         FOREIGN KEY (cliente_id) REFERENCES cliente(idcliente)
         ON UPDATE CASCADE ON DELETE CASCADE,
@@ -73,7 +73,6 @@ CREATE TABLE cita (
     doctor_id INTEGER NOT NULL,
     estado VARCHAR(50) NOT NULL DEFAULT 'Programada',
     notas TEXT,
-    recordatorio VARCHAR(3) DEFAULT 'No',
     CONSTRAINT fk_cita_cliente
         FOREIGN KEY (cliente_id) REFERENCES cliente(idcliente)
         ON UPDATE CASCADE ON DELETE CASCADE,
