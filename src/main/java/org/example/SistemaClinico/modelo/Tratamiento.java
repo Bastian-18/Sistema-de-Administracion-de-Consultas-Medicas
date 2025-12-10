@@ -4,13 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
 import org.openxava.annotations.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @Entity
 @Views({
-    @View(name="Simple", members="consulta, nombre, duracion"),
-    @View(name="Completa", members="consulta, nombre, descripcion, duracion, medicamentos")
+    @View(name="Simple", members="consulta, nombre, fechaInicio, fechaFin, duracion"),
+    @View(name="Completa", members="consulta, nombre, descripcion, fechaInicio, fechaFin, duracion, medicamentos")
 })
 @Tab(properties="nombre, consulta.fecha, consulta.cliente.nombre, consulta.cliente.apellido, duracion")
 public class Tratamiento {
@@ -31,8 +32,16 @@ public class Tratamiento {
     @Column(length = 500)
     private String descripcion;
     
+    @Required
+    @Column(name = "fecha_inicio")
+    private LocalDate fechaInicio;
+
+    @Required
+    @Column(name = "fecha_fin")
+    private LocalDate fechaFin;
+
     @Column(length = 50)
-    @DisplaySize(20)
+    @ReadOnly
     private String duracion;
     
     @Stereotype("MEMO")
@@ -47,14 +56,37 @@ public class Tratamiento {
     @NoModify
     private Consulta consulta;
 
+    @PrePersist
+    @PreUpdate
+    public void calcularDuracion() {
+        if (fechaInicio != null && fechaFin != null) {
+            long dias = java.time.temporal.ChronoUnit.DAYS.between(fechaInicio, fechaFin);
+            if (dias < 0) {
+                this.duracion = "Error: Fechas inválidas";
+            } else if (dias == 0) {
+                this.duracion = "1 día";
+            } else if (dias < 30) {
+                this.duracion = (dias + 1) + " días";
+            } else if (dias < 60) {
+                this.duracion = "1 mes";
+            } else {
+                long meses = dias / 30;
+                this.duracion = meses + " meses";
+            }
+        }
+    }
+
     public Tratamiento() {}
 
-    public Tratamiento(String nombre, String descripcion, String duracion, String medicamentos, Consulta consulta) {
+    public Tratamiento(String nombre, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, String medicamentos, Consulta consulta) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.duracion = duracion;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
         this.medicamentos = medicamentos;
         this.consulta = consulta;
+        // Calcular duración inicial
+        calcularDuracion();
     }
 
     @Override
@@ -63,6 +95,8 @@ public class Tratamiento {
                 "idTratamiento=" + idTratamiento +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaFin=" + fechaFin +
                 ", duracion='" + duracion + '\'' +
                 ", medicamentos='" + medicamentos + '\'' +
                 ", consulta=" + consulta +

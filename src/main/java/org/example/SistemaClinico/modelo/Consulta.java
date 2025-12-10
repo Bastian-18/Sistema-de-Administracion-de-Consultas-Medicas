@@ -16,6 +16,10 @@ import java.util.Date;
     @View(name="Busqueda", members="fecha, hora, cliente, doctor, estado, costo")
 })
 @Tab(properties="fecha, hora, cliente.nombre, cliente.apellido, doctor.nombre, doctor.apellido, estado, costo")
+@org.openxava.annotations.EntityValidator(
+    value=org.example.SistemaClinico.validadores.ValidadorModificacionConsulta.class,
+    properties= { @PropertyValue(name="estado"), @PropertyValue(name="idConsulta") }
+)
 public class Consulta {
 
     @Id

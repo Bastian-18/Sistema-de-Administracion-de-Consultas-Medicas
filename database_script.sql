@@ -54,6 +54,8 @@ CREATE TABLE tratamiento (
     idtratamiento SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     descripcion TEXT,
+    fecha_inicio DATE,
+    fecha_fin DATE,
     duracion VARCHAR(50),
     medicamentos TEXT,
     consulta_id INTEGER NOT NULL,
@@ -68,7 +70,7 @@ DROP TABLE IF EXISTS cita CASCADE;
 CREATE TABLE cita (
     idcita SERIAL PRIMARY KEY,
     fecha DATE NOT NULL,
-    hora VARCHAR(20) NOT NULL,
+    hora VARCHAR(5) NOT NULL,
     cliente_id INTEGER NOT NULL,
     doctor_id INTEGER NOT NULL,
     estado VARCHAR(50) NOT NULL DEFAULT 'Programada',

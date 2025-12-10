@@ -26,16 +26,13 @@ public class Cita {
     private int idCita;
     
     @Required
-    @Stereotype("DATE")
-    @Temporal(TemporalType.DATE)
     @Column(name = "fecha")
     @DefaultValueCalculator(org.openxava.calculators.CurrentDateCalculator.class)
     private Date fecha;
     
     @Required
-    @Stereotype("TIME")
-    @Column(length = 20)
-    @DisplaySize(10)
+    @Column(length = 5)
+    @javax.validation.constraints.Pattern(regexp = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", message = "La hora debe tener el formato HH:mm (ej. 14:30)")
     private String hora;
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

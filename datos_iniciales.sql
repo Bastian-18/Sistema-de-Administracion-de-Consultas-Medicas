@@ -39,17 +39,17 @@ INSERT INTO consulta (fecha, hora, cliente_id, doctor_id, motivo, estado, costo)
 ('2025-02-19', '16:00', 2, 3, 'Revisión dermatológica', 'PENDIENTE', 30.00);
 
 -- ========== TRATAMIENTOS ==========
-INSERT INTO tratamiento (nombre, descripcion, duracion, medicamentos, consulta_id) VALUES
-('Analgésicos', 'Alivio del dolor leve a moderado', '7 días', 'Ibuprofeno 400mg', 1),
-('Evaluación cardíaca', 'Análisis y monitoreo cardiaco', '1 semana', 'Aspirina 100mg', 2),
-('Crema dermatológica', 'Reducción de irritación', '10 días', 'Hidrocortisona', 3),
-('Vacunación pediátrica', 'Aplicación de vacunas según calendario', 'Inmediato', 'Vacuna DPT', 4),
-('Tratamiento hormonal', 'Regulación hormonal', '3 meses', 'Anticonceptivos orales', 5),
-('Fisioterapia', 'Rehabilitación de rodilla', '4 semanas', 'Antiinflamatorios', 6),
-('Estudio neurológico', 'Evaluación de síntomas neurológicos', '2 semanas', 'Paracetamol 500mg', 7),
-('Terapia psicológica', 'Sesiones de terapia', '6 meses', 'Antidepresivos', 8),
-('Control cardíaco', 'Monitoreo continuo', '1 mes', 'Betabloqueadores', 9),
-('Tratamiento tópico', 'Aplicación de cremas', '2 semanas', 'Antifúngicos', 10);
+INSERT INTO tratamiento (nombre, descripcion, fecha_inicio, fecha_fin, duracion, medicamentos, consulta_id) VALUES
+('Analgésicos', 'Alivio del dolor leve a moderado', '2025-02-10', '2025-02-17', '7 días', 'Ibuprofeno 400mg', 1),
+('Evaluación cardíaca', 'Análisis y monitoreo cardiaco', '2025-02-11', '2025-02-18', '1 semana', 'Aspirina 100mg', 2),
+('Crema dermatológica', 'Reducción de irritación', '2025-02-12', '2025-02-22', '10 días', 'Hidrocortisona', 3),
+('Vacunación pediátrica', 'Aplicación de vacunas según calendario', '2025-02-13', '2025-02-13', 'Inmediato', 'Vacuna DPT', 4),
+('Tratamiento hormonal', 'Regulación hormonal', '2025-02-14', '2025-05-14', '3 meses', 'Anticonceptivos orales', 5),
+('Fisioterapia', 'Rehabilitación de rodilla', '2025-02-15', '2025-03-15', '4 semanas', 'Antiinflamatorios', 6),
+('Estudio neurológico', 'Evaluación de síntomas neurológicos', '2025-02-16', '2025-03-02', '2 semanas', 'Paracetamol 500mg', 7),
+('Terapia psicológica', 'Sesiones de terapia', '2025-02-17', '2025-08-17', '6 meses', 'Antidepresivos', 8),
+('Control cardíaco', 'Monitoreo continuo', '2025-02-18', '2025-03-18', '1 mes', 'Betabloqueadores', 9),
+('Tratamiento tópico', 'Aplicación de cremas', '2025-02-19', '2025-03-05', '2 semanas', 'Antifúngicos', 10);
 
 -- ========== CITAS ==========
 INSERT INTO cita (fecha, hora, cliente_id, doctor_id, estado, notas) VALUES
