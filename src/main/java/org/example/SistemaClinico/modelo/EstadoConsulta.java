@@ -1,10 +1,9 @@
 package org.example.SistemaClinico.modelo;
 
 public enum EstadoConsulta {
-    PENDIENTE("Pendiente"),
-    EN_PROCESO("En Proceso"),
-    COMPLETADA("Completada"),
-    CANCELADA("Cancelada");
+    EN_ESPERA("En Espera"),
+    EN_ATENCION("En Atención"),
+    COMPLETADA("Completada");
     
     private final String descripcion;
     

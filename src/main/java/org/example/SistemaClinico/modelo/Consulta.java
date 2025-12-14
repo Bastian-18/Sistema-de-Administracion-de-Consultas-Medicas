@@ -13,7 +13,7 @@ import java.util.Date;
 @Entity
 @Views({
     @View(name="Simple", members="fecha, hora, cliente, doctor, estado"),
-    @View(name="Completa", members="fecha, hora, cliente, doctor, motivo, estado, costo; tratamientos; pagos"),
+    @View(name="Completa", members="fecha, hora, cliente, doctor, cita, motivo, estado, costo; tratamientos; pagos"),
     @View(name="Busqueda", members="fecha, hora, cliente, doctor, estado, costo")
 })
 @Tab(properties="fecha, hora, cliente.nombre, cliente.apellido, doctor.nombre, doctor.apellido, estado, costo")
@@ -38,9 +38,8 @@ public class Consulta {
     private Date fecha;
     
     @Required
-    @Stereotype("TIME")
-    @Column(length = 20)
-    @DisplaySize(10)
+    @Column(length = 5)
+    @javax.validation.constraints.Pattern(regexp = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", message = "La hora debe tener el formato HH:mm (ej. 14:30)")
     private String hora;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -54,6 +53,12 @@ public class Consulta {
     @ReferenceView("Busqueda")
     @Required
     private Doctor doctor;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "cita_id")
+    @ReferenceView("Simple")
+    @OnChange(org.example.SistemaClinico.acciones.AlCambiarCita.class)
+    private Cita cita;
 
 
     @Stereotype("MEMO")
@@ -82,11 +87,12 @@ public class Consulta {
 
     public Consulta() {}
 
-    public Consulta(Date fecha, String hora, Cliente cliente, Doctor doctor, String motivo, EstadoConsulta estado, BigDecimal costo) {
+    public Consulta(Date fecha, String hora, Cliente cliente, Doctor doctor, Cita cita, String motivo, EstadoConsulta estado, BigDecimal costo) {
         this.fecha = fecha;
         this.hora = hora;
         this.cliente = cliente;
         this.doctor = doctor;
+        this.cita = cita;
         this.motivo = motivo;
         this.estado = estado;
         this.costo = costo;
@@ -100,6 +106,7 @@ public class Consulta {
                 ", hora='" + hora + '\'' +
                 ", cliente=" + cliente +
                 ", doctor=" + doctor +
+                ", cita=" + cita +
                 ", motivo='" + motivo + '\'' +
                 ", estado='" + estado + '\'' +
                 ", costo=" + costo +

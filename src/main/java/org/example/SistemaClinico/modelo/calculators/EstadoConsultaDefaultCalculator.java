@@ -6,7 +6,7 @@ import org.openxava.calculators.ICalculator;
 public class EstadoConsultaDefaultCalculator implements ICalculator {
     @Override
     public Object calculate() throws Exception {
-        return EstadoConsulta.PENDIENTE;
+        return EstadoConsulta.EN_ESPERA;
     }
 }
 

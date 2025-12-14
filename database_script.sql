@@ -33,9 +33,10 @@ DROP TABLE IF EXISTS consulta CASCADE;
 CREATE TABLE consulta (
     idconsulta SERIAL PRIMARY KEY,
     fecha DATE NOT NULL,
-    hora VARCHAR(20) NOT NULL,
+    hora VARCHAR(5) NOT NULL,
     cliente_id INTEGER NOT NULL,
     doctor_id INTEGER NOT NULL,
+    cita_id INTEGER UNIQUE,
     motivo TEXT,
     estado VARCHAR(50),
     costo DECIMAL(10, 2),
@@ -44,7 +45,10 @@ CREATE TABLE consulta (
         ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT fk_consulta_doctor
         FOREIGN KEY (doctor_id) REFERENCES doctor(iddoctor)
-        ON UPDATE CASCADE ON DELETE CASCADE
+        ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_consulta_cita
+        FOREIGN KEY (cita_id) REFERENCES cita(idcita)
+        ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 -- ========== TABLA TRATAMIENTO ==========
@@ -57,7 +61,6 @@ CREATE TABLE tratamiento (
     fecha_inicio DATE,
     fecha_fin DATE,
     duracion VARCHAR(50),
-    medicamentos TEXT,
     consulta_id INTEGER NOT NULL,
     CONSTRAINT fk_tratamiento_consulta
         FOREIGN KEY (consulta_id) REFERENCES consulta(idconsulta)
@@ -80,7 +83,8 @@ CREATE TABLE cita (
         ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT fk_cita_doctor
         FOREIGN KEY (doctor_id) REFERENCES doctor(iddoctor)
-        ON UPDATE CASCADE ON DELETE CASCADE
+        ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT uq_cita_doctor_fecha_hora UNIQUE (doctor_id, fecha, hora)
 );
 
 -- ========== TABLA RECETA ==========
@@ -127,6 +131,7 @@ CREATE INDEX idx_cita_fecha ON cita(fecha);
 CREATE INDEX idx_cita_estado ON cita(estado);
 CREATE INDEX idx_receta_consulta ON receta(consulta_id);
 CREATE INDEX idx_pago_consulta ON pago(consulta_id);
+CREATE INDEX idx_consulta_cita ON consulta(cita_id);
 CREATE INDEX idx_pago_fecha ON pago(fechapago);
 CREATE INDEX idx_pago_estado ON pago(estado);
 

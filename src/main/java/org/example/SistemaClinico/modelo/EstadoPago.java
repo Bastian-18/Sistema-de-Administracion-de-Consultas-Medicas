@@ -2,8 +2,8 @@ package org.example.SistemaClinico.modelo;
 
 public enum EstadoPago {
     PENDIENTE("Pendiente"),
-    PAGADO("Pagado"),
-    CANCELADO("Cancelado");
+    PARCIAL("Parcial"),
+    PAGADO("Pagado");
     
     private final String descripcion;
     

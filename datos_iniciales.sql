@@ -26,30 +26,30 @@ INSERT INTO doctor (nombre, apellido, especialidad, numerolicencia, telefono) VA
 ('Andrés', 'Castro', 'Psiquiatría', 'PSI-789', '7777-8888');
 
 -- ========== CONSULTAS ==========
-INSERT INTO consulta (fecha, hora, cliente_id, doctor_id, motivo, estado, costo) VALUES
-('2025-02-10', '09:00', 1, 1, 'Dolor de cabeza persistente', 'COMPLETADA', 25.00),
-('2025-02-11', '10:30', 2, 2, 'Dolor en el pecho', 'COMPLETADA', 40.00),
-('2025-02-12', '14:00', 3, 3, 'Erupciones en la piel', 'COMPLETADA', 30.00),
-('2025-02-13', '08:00', 4, 4, 'Control pediátrico', 'COMPLETADA', 35.00),
-('2025-02-14', '11:00', 5, 5, 'Consulta ginecológica', 'COMPLETADA', 50.00),
-('2025-02-15', '15:30', 6, 6, 'Dolor en rodilla', 'COMPLETADA', 45.00),
-('2025-02-16', '09:30', 7, 7, 'Dolores de cabeza frecuentes', 'COMPLETADA', 55.00),
-('2025-02-17', '10:00', 8, 8, 'Consulta psicológica', 'COMPLETADA', 60.00),
-('2025-02-18', '14:30', 1, 2, 'Seguimiento cardíaco', 'PENDIENTE', 40.00),
-('2025-02-19', '16:00', 2, 3, 'Revisión dermatológica', 'PENDIENTE', 30.00);
+INSERT INTO consulta (fecha, hora, cliente_id, doctor_id, cita_id, motivo, estado, costo) VALUES
+('2025-02-10', '09:00', 1, 1, NULL, 'Dolor de cabeza persistente', 'COMPLETADA', 25.00),
+('2025-02-11', '10:30', 2, 2, NULL, 'Dolor en el pecho', 'COMPLETADA', 40.00),
+('2025-02-12', '14:00', 3, 3, NULL, 'Erupciones en la piel', 'COMPLETADA', 30.00),
+('2025-02-13', '08:00', 4, 4, NULL, 'Control pediátrico', 'COMPLETADA', 35.00),
+('2025-02-14', '11:00', 5, 5, NULL, 'Consulta ginecológica', 'COMPLETADA', 50.00),
+('2025-02-15', '15:30', 6, 6, NULL, 'Dolor en rodilla', 'COMPLETADA', 45.00),
+('2025-02-16', '09:30', 7, 7, NULL, 'Dolores de cabeza frecuentes', 'COMPLETADA', 55.00),
+('2025-02-17', '10:00', 8, 8, NULL, 'Consulta psicológica', 'COMPLETADA', 60.00),
+('2025-02-18', '14:30', 1, 2, NULL, 'Seguimiento cardíaco', 'EN_ESPERA', 40.00),
+('2025-02-19', '16:00', 2, 3, NULL, 'Revisión dermatológica', 'EN_ESPERA', 30.00);
 
 -- ========== TRATAMIENTOS ==========
-INSERT INTO tratamiento (nombre, descripcion, fecha_inicio, fecha_fin, duracion, medicamentos, consulta_id) VALUES
-('Analgésicos', 'Alivio del dolor leve a moderado', '2025-02-10', '2025-02-17', '7 días', 'Ibuprofeno 400mg', 1),
-('Evaluación cardíaca', 'Análisis y monitoreo cardiaco', '2025-02-11', '2025-02-18', '1 semana', 'Aspirina 100mg', 2),
-('Crema dermatológica', 'Reducción de irritación', '2025-02-12', '2025-02-22', '10 días', 'Hidrocortisona', 3),
-('Vacunación pediátrica', 'Aplicación de vacunas según calendario', '2025-02-13', '2025-02-13', 'Inmediato', 'Vacuna DPT', 4),
-('Tratamiento hormonal', 'Regulación hormonal', '2025-02-14', '2025-05-14', '3 meses', 'Anticonceptivos orales', 5),
-('Fisioterapia', 'Rehabilitación de rodilla', '2025-02-15', '2025-03-15', '4 semanas', 'Antiinflamatorios', 6),
-('Estudio neurológico', 'Evaluación de síntomas neurológicos', '2025-02-16', '2025-03-02', '2 semanas', 'Paracetamol 500mg', 7),
-('Terapia psicológica', 'Sesiones de terapia', '2025-02-17', '2025-08-17', '6 meses', 'Antidepresivos', 8),
-('Control cardíaco', 'Monitoreo continuo', '2025-02-18', '2025-03-18', '1 mes', 'Betabloqueadores', 9),
-('Tratamiento tópico', 'Aplicación de cremas', '2025-02-19', '2025-03-05', '2 semanas', 'Antifúngicos', 10);
+INSERT INTO tratamiento (nombre, descripcion, fecha_inicio, fecha_fin, duracion, consulta_id) VALUES
+('Analgésicos', 'Alivio del dolor leve a moderado', '2025-02-10', '2025-02-17', '7 días', 1),
+('Evaluación cardíaca', 'Análisis y monitoreo cardiaco', '2025-02-11', '2025-02-18', '1 semana', 2),
+('Crema dermatológica', 'Reducción de irritación', '2025-02-12', '2025-02-22', '10 días', 3),
+('Vacunación pediátrica', 'Aplicación de vacunas según calendario', '2025-02-13', '2025-02-13', 'Inmediato', 4),
+('Tratamiento hormonal', 'Regulación hormonal', '2025-02-14', '2025-05-14', '3 meses', 5),
+('Fisioterapia', 'Rehabilitación de rodilla', '2025-02-15', '2025-03-15', '4 semanas', 6),
+('Estudio neurológico', 'Evaluación de síntomas neurológicos', '2025-02-16', '2025-03-02', '2 semanas', 7),
+('Terapia psicológica', 'Sesiones de terapia', '2025-02-17', '2025-08-17', '6 meses', 8),
+('Control cardíaco', 'Monitoreo continuo', '2025-02-18', '2025-03-18', '1 mes', 9),
+('Tratamiento tópico', 'Aplicación de cremas', '2025-02-19', '2025-03-05', '2 semanas', 10);
 
 -- ========== CITAS ==========
 INSERT INTO cita (fecha, hora, cliente_id, doctor_id, estado, notas) VALUES

@@ -22,12 +22,8 @@ public class ValidadorModificacionConsulta implements IValidator {
         try {
             EstadoConsulta estadoAnterior = (EstadoConsulta) query.getSingleResult();
             
-            // Si estaba en un estado final, NO permitir cambios
-            if (estadoAnterior == EstadoConsulta.COMPLETADA || estadoAnterior == EstadoConsulta.CANCELADA) {
-                // Excepción: Permitir si NO estamos cambiando nada (difícil de saber aquí sin comparar todo)
-                // O permitir si es un usuario administrador (no implementado).
-                
-                // Lógica estricta: Si ya estaba cerrada, error.
+            // Si estaba COMPLETADA, NO permitir cambios
+            if (estadoAnterior == EstadoConsulta.COMPLETADA) {
                 errors.add("consulta_bloqueada_edicion", estadoAnterior);
             }
         } catch (NoResultException ex) {

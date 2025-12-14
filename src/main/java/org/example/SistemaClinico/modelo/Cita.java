@@ -16,6 +16,15 @@ import java.util.Date;
 
 
 @Tab(properties="fecha, hora, cliente.nombre, cliente.apellido, doctor.nombre, doctor.apellido, estado")
+@org.openxava.annotations.EntityValidator(
+    value=org.example.SistemaClinico.validadores.ValidadorCita.class,
+    properties= { 
+        @PropertyValue(name="idCita"), 
+        @PropertyValue(name="fecha"),
+        @PropertyValue(name="hora"), 
+        @PropertyValue(name="doctor") 
+    }
+)
 public class Cita {
     
     @Id

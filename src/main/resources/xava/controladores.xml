@@ -38,6 +38,8 @@
         <hereda-de controlador="Typical"/>
         <accion nombre="imprimirCitas" icono="printer" modo="list" 
                 clase="org.example.SistemaClinico.reportes.acciones.ImprimirCitasAction"/>
+        <accion nombre="crearConsulta" icono="add-circle" modo="detail" confirm="true"
+                clase="org.example.SistemaClinico.acciones.CrearConsultaDesdeCita"/>
     </controlador>
     
     <controlador nombre="Pago">

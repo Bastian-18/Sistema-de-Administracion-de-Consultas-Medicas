@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Entity
 @Views({
     @View(name="Simple", members="consulta, nombre, fechaInicio, fechaFin, duracion"),
-    @View(name="Completa", members="consulta, nombre, descripcion, fechaInicio, fechaFin, duracion, medicamentos")
+    @View(name="Completa", members="consulta, nombre, descripcion, fechaInicio, fechaFin, duracion")
 })
 @Tab(properties="nombre, consulta.fecha, consulta.cliente.nombre, consulta.cliente.apellido, duracion")
 public class Tratamiento {
@@ -43,10 +43,6 @@ public class Tratamiento {
     @Column(length = 50)
     @ReadOnly
     private String duracion;
-    
-    @Stereotype("MEMO")
-    @Column(length = 500)
-    private String medicamentos;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "consulta_id")
@@ -78,12 +74,11 @@ public class Tratamiento {
 
     public Tratamiento() {}
 
-    public Tratamiento(String nombre, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, String medicamentos, Consulta consulta) {
+    public Tratamiento(String nombre, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, Consulta consulta) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-        this.medicamentos = medicamentos;
         this.consulta = consulta;
         // Calcular duración inicial
         calcularDuracion();
@@ -98,7 +93,6 @@ public class Tratamiento {
                 ", fechaInicio=" + fechaInicio +
                 ", fechaFin=" + fechaFin +
                 ", duracion='" + duracion + '\'' +
-                ", medicamentos='" + medicamentos + '\'' +
                 ", consulta=" + consulta +
                 '}';
     }
